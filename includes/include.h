@@ -2,7 +2,8 @@
 #define __INCLUDE_H__
 
 #include <xc.h>
-#include <pic628.h>
+#include <stdint.h>
+#include <pic628a.h>
 #include <base.h>
 #include <application.h>
 

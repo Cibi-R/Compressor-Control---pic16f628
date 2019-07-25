@@ -4,6 +4,8 @@
     <logicalFolder name="f1" displayName="application" projectFiles="true">
     </logicalFolder>
     <logicalFolder name="f2" displayName="base" projectFiles="true">
+      <itemPath>../core/base/seven_seg/src/seven_seg.c</itemPath>
+      <itemPath>../core/base/com_control/src/com_control.c</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -14,11 +16,15 @@
                    projectFiles="true">
     </logicalFolder>
     <logicalFolder name="f3" displayName="pic628" projectFiles="true">
+      <itemPath>../core/pic628a/timer/src/timer.c</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>../src/src.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f4" displayName="sys_os" projectFiles="true">
+      <itemPath>../core/sysos/src/sys_os.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -28,6 +34,11 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../src</Elem>
+    <Elem>../core/base/seven_seg/src</Elem>
+    <Elem>../core/pic628a/timer/src</Elem>
+    <Elem>../core/sys_os/src</Elem>
+    <Elem>../core/sysos/src</Elem>
+    <Elem>../core/base/com_control/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

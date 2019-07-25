@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../src/src.c
+SOURCEFILES_QUOTED_IF_SPACED=../core/base/seven_seg/src/seven_seg.c ../src/src.c ../core/pic628a/timer/src/timer.c ../core/sysos/src/sys_os.c ../core/base/com_control/src/com_control.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1360937237/src.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1360937237/src.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/407404891/seven_seg.p1 ${OBJECTDIR}/_ext/1360937237/src.p1 ${OBJECTDIR}/_ext/1151825977/timer.p1 ${OBJECTDIR}/_ext/1982249467/sys_os.p1 ${OBJECTDIR}/_ext/1902873065/com_control.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/407404891/seven_seg.p1.d ${OBJECTDIR}/_ext/1360937237/src.p1.d ${OBJECTDIR}/_ext/1151825977/timer.p1.d ${OBJECTDIR}/_ext/1982249467/sys_os.p1.d ${OBJECTDIR}/_ext/1902873065/com_control.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1360937237/src.p1
+OBJECTFILES=${OBJECTDIR}/_ext/407404891/seven_seg.p1 ${OBJECTDIR}/_ext/1360937237/src.p1 ${OBJECTDIR}/_ext/1151825977/timer.p1 ${OBJECTDIR}/_ext/1982249467/sys_os.p1 ${OBJECTDIR}/_ext/1902873065/com_control.p1
 
 # Source Files
-SOURCEFILES=../src/src.c
+SOURCEFILES=../core/base/seven_seg/src/seven_seg.c ../src/src.c ../core/pic628a/timer/src/timer.c ../core/sysos/src/sys_os.c ../core/base/com_control/src/com_control.c
 
 
 CFLAGS=
@@ -93,6 +93,14 @@ MP_PROCESSOR_OPTION=16F628A
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${OBJECTDIR}/_ext/407404891/seven_seg.p1: ../core/base/seven_seg/src/seven_seg.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/407404891" 
+	@${RM} ${OBJECTDIR}/_ext/407404891/seven_seg.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/407404891/seven_seg.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"../includes" -I"../" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/407404891/seven_seg.p1 ../core/base/seven_seg/src/seven_seg.c 
+	@-${MV} ${OBJECTDIR}/_ext/407404891/seven_seg.d ${OBJECTDIR}/_ext/407404891/seven_seg.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/407404891/seven_seg.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 ${OBJECTDIR}/_ext/1360937237/src.p1: ../src/src.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/src.p1.d 
@@ -101,7 +109,39 @@ ${OBJECTDIR}/_ext/1360937237/src.p1: ../src/src.c  nbproject/Makefile-${CND_CONF
 	@-${MV} ${OBJECTDIR}/_ext/1360937237/src.d ${OBJECTDIR}/_ext/1360937237/src.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1360937237/src.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/_ext/1151825977/timer.p1: ../core/pic628a/timer/src/timer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1151825977" 
+	@${RM} ${OBJECTDIR}/_ext/1151825977/timer.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1151825977/timer.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"../includes" -I"../" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1151825977/timer.p1 ../core/pic628a/timer/src/timer.c 
+	@-${MV} ${OBJECTDIR}/_ext/1151825977/timer.d ${OBJECTDIR}/_ext/1151825977/timer.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1151825977/timer.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1982249467/sys_os.p1: ../core/sysos/src/sys_os.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1982249467" 
+	@${RM} ${OBJECTDIR}/_ext/1982249467/sys_os.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1982249467/sys_os.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"../includes" -I"../" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1982249467/sys_os.p1 ../core/sysos/src/sys_os.c 
+	@-${MV} ${OBJECTDIR}/_ext/1982249467/sys_os.d ${OBJECTDIR}/_ext/1982249467/sys_os.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1982249467/sys_os.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1902873065/com_control.p1: ../core/base/com_control/src/com_control.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1902873065" 
+	@${RM} ${OBJECTDIR}/_ext/1902873065/com_control.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1902873065/com_control.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"../includes" -I"../" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1902873065/com_control.p1 ../core/base/com_control/src/com_control.c 
+	@-${MV} ${OBJECTDIR}/_ext/1902873065/com_control.d ${OBJECTDIR}/_ext/1902873065/com_control.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1902873065/com_control.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
+${OBJECTDIR}/_ext/407404891/seven_seg.p1: ../core/base/seven_seg/src/seven_seg.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/407404891" 
+	@${RM} ${OBJECTDIR}/_ext/407404891/seven_seg.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/407404891/seven_seg.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"../includes" -I"../" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/407404891/seven_seg.p1 ../core/base/seven_seg/src/seven_seg.c 
+	@-${MV} ${OBJECTDIR}/_ext/407404891/seven_seg.d ${OBJECTDIR}/_ext/407404891/seven_seg.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/407404891/seven_seg.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 ${OBJECTDIR}/_ext/1360937237/src.p1: ../src/src.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/src.p1.d 
@@ -109,6 +149,30 @@ ${OBJECTDIR}/_ext/1360937237/src.p1: ../src/src.c  nbproject/Makefile-${CND_CONF
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"../includes" -I"../" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1360937237/src.p1 ../src/src.c 
 	@-${MV} ${OBJECTDIR}/_ext/1360937237/src.d ${OBJECTDIR}/_ext/1360937237/src.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1360937237/src.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1151825977/timer.p1: ../core/pic628a/timer/src/timer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1151825977" 
+	@${RM} ${OBJECTDIR}/_ext/1151825977/timer.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1151825977/timer.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"../includes" -I"../" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1151825977/timer.p1 ../core/pic628a/timer/src/timer.c 
+	@-${MV} ${OBJECTDIR}/_ext/1151825977/timer.d ${OBJECTDIR}/_ext/1151825977/timer.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1151825977/timer.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1982249467/sys_os.p1: ../core/sysos/src/sys_os.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1982249467" 
+	@${RM} ${OBJECTDIR}/_ext/1982249467/sys_os.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1982249467/sys_os.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"../includes" -I"../" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1982249467/sys_os.p1 ../core/sysos/src/sys_os.c 
+	@-${MV} ${OBJECTDIR}/_ext/1982249467/sys_os.d ${OBJECTDIR}/_ext/1982249467/sys_os.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1982249467/sys_os.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1902873065/com_control.p1: ../core/base/com_control/src/com_control.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1902873065" 
+	@${RM} ${OBJECTDIR}/_ext/1902873065/com_control.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1902873065/com_control.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"../includes" -I"../" -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/1902873065/com_control.p1 ../core/base/com_control/src/com_control.c 
+	@-${MV} ${OBJECTDIR}/_ext/1902873065/com_control.d ${OBJECTDIR}/_ext/1902873065/com_control.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1902873065/com_control.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

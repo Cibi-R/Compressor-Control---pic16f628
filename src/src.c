@@ -6,6 +6,9 @@
  */
 
 #include <include.h>
+#include SYS_OS_H
+#include SEVEN_SEG_H
+#include COM_CONTROL_H
 
 /*******************************************************************************************************
  *                                  System Configuration                                               *
@@ -21,10 +24,34 @@
 #pragma config CPD   = OFF        // Data EE Memory Code Protection bit (Data memory code protection off)
 #pragma config CP    = ON          // Flash Program Memory Code Protection bit (0000h to 07FFh code-protected)
 
+void __interrupt() ISR(void)
+{
+    if (T0IF)
+    {
+        T0IF = 0;
+        TMR0 = 100;
+
+        SysOs_Task_Eval();
+        SysOs_Task_Exe();
+    }
+}
+
 void main(void) 
-{ 
+{   
+    SetTimeHandler.System_OnTime = 9;
+
+    SetTimeHandler.System_OffTime = 1;
+
+    SysOs_Init();
+
+    Seven_Seg_Enable();
+
+    SetTimeHandler.System_Mode = SYSTEM_MODE_COM_CTRL;
+
     while (1)
     {
-        
+        SetTime_Main();
+
+        ComControl_Main();
     }
 }

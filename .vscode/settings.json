@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "include.h": "c",
+        "application.h": "c",
+        "com_control_config.h": "c",
+        "pic628a.h": "c",
+        "base.h": "c",
+        "sys_os.h": "c"
+    }
+}

@@ -14,7 +14,6 @@
 
 
 
-
 # 1 "../includes\\include.h" 1
 
 
@@ -1010,6 +1009,9 @@ extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
 # 4 "../includes\\include.h" 2
 
+# 1 "../includes\\platform.h" 1
+# 5 "../includes\\include.h" 2
+
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int8_t;
@@ -1143,17 +1145,124 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 5 "../includes\\include.h" 2
-
-# 1 "../includes\\pic628a.h" 1
 # 6 "../includes\\include.h" 2
 
-# 1 "../includes\\base.h" 1
+# 1 "../includes\\pic628a.h" 1
 # 7 "../includes\\include.h" 2
 
-# 1 "../includes\\application.h" 1
+# 1 "../includes\\base.h" 1
 # 8 "../includes\\include.h" 2
+
+# 1 "../includes\\application.h" 1
+# 9 "../includes\\include.h" 2
+
+# 1 "../includes\\sysos.h" 1
+# 10 "../includes\\include.h" 2
+
+# 1 "../includes\\com_control_config.h" 1
+# 11 "../includes\\include.h" 2
+# 8 "../src/src.c" 2
+
+# 1 "..\\core/sysos/api/sys_os.h" 1
+
+
+
+
+extern void SysOs_Init(void);
+
+extern void SysOs_Task_Eval(void);
+
+extern void SysOs_Task_Exe(void);
 # 9 "../src/src.c" 2
+
+# 1 "..\\core/base/seven_seg/api/seven_seg.h" 1
+
+
+
+
+
+
+
+typedef struct _Segment_Handler_ST
+{
+    unsigned char Segment_Value : 7;
+    unsigned char Segment_Double : 1;
+    unsigned char Segment_Enable : 1;
+    unsigned char Reserved : 7;
+}Segment_Handler_ST;
+
+
+
+
+
+
+
+extern Segment_Handler_ST Segment_Handler;
+# 35 "..\\core/base/seven_seg/api/seven_seg.h"
+extern void Seven_Seg_Display(void);
+
+
+
+
+
+
+void Seven_Seg_Enable (void);
+
+
+
+
+
+
+
+void Seven_Seg_Disable (void);
+
+
+
+
+
+
+
+extern void Seven_Seg_Init(void);
+# 10 "../src/src.c" 2
+
+# 1 "..\\core/base/com_control/api/com_control.h" 1
+
+
+
+
+
+
+
+
+typedef struct _SetTimeHandler_ST
+{
+    unsigned char KeyPressedFor_OnTime : 1;
+    unsigned char KeyPressedFor_OffTime : 1;
+    unsigned char System_Mode : 2;
+    unsigned char System_OnTime : 4;
+    unsigned char System_OffTime;
+}SetTimeHandler_ST;
+
+
+extern SetTimeHandler_ST SetTimeHandler;
+
+extern unsigned char System_Time_Shadow;
+
+
+extern void SetTime_Init(void);
+
+extern void SetTime_Button_Handler(void);
+
+extern void SetTime_Main(void);
+
+extern void ComControl_OnTime(void);
+
+extern void ComControl_OffTime(void);
+
+extern void ComControl_Monitor_Time(void);
+
+extern void ComControl_Main(void);
+# 11 "../src/src.c" 2
 
 
 
@@ -1170,10 +1279,34 @@ typedef uint16_t uintptr_t;
 #pragma config CPD = OFF
 #pragma config CP = ON
 
+void __attribute__((picinterrupt(("")))) ISR(void)
+{
+    if (T0IF)
+    {
+        T0IF = 0;
+        TMR0 = 100;
+
+        SysOs_Task_Eval();
+        SysOs_Task_Exe();
+    }
+}
+
 void main(void)
 {
+    SetTimeHandler.System_OnTime = 9;
+
+    SetTimeHandler.System_OffTime = 1;
+
+    SysOs_Init();
+
+    Seven_Seg_Enable();
+
+    SetTimeHandler.System_Mode = (uint8_t)0X02;
+
     while (1)
     {
+        SetTime_Main();
 
+        ComControl_Main();
     }
 }

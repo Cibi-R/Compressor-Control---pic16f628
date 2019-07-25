@@ -1,212 +1,3070 @@
 
 
 Microchip MPLAB XC8 Assembler V2.05 build -831301201 
-                                                                                               Thu Jul 11 18:41:55 2019
+                                                                                               Thu Jul 25 18:39:38 2019
 
 Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1 
      1                           	processor	16F628A
      2                           	opt	pw 120
      3                           	opt	flic
-     4                           	psect	cinit,global,class=CODE,merge=1,delta=2
-     5                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
-     6                           	psect	maintext,global,class=CODE,split=1,delta=2
-     7                           	dabs	1,0x7E,2
-     8  0000                     
-     9                           ; Version 2.05
-    10                           ; Generated 20/12/2018 GMT
-    11                           ; 
-    12                           ; Copyright © 2018, Microchip Technology Inc. and its subsidiaries ("Microchip")
-    13                           ; All rights reserved.
-    14                           ; 
-    15                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+     4                           	psect	idataCOMMON,global,class=CODE,delta=2
+     5                           	psect	idataBANK0,global,class=CODE,delta=2
+     6                           	psect	strings,global,class=STRING,delta=2
+     7                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     8                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     9                           	psect	dataCOMMON,global,class=COMMON,space=1,delta=1
+    10                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+    11                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+    12                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    13                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    14                           	psect	maintext,global,class=CODE,split=1,delta=2
+    15                           	psect	text1,local,class=CODE,merge=1,delta=2
+    16                           	psect	text2,local,class=CODE,merge=1,delta=2
+    17                           	psect	text3,local,class=CODE,merge=1,delta=2
+    18                           	psect	text4,local,class=CODE,merge=1,delta=2
+    19                           	psect	text5,local,class=CODE,merge=1,delta=2
+    20                           	psect	text6,local,class=CODE,merge=1,delta=2
+    21                           	psect	text7,local,class=CODE,merge=1,delta=2
+    22                           	psect	text8,local,class=CODE,merge=1,delta=2
+    23                           	psect	text9,local,class=CODE,merge=1,delta=2
+    24                           	psect	text10,local,class=CODE,merge=1,delta=2
+    25                           	psect	text11,local,class=CODE,merge=1,delta=2
+    26                           	psect	text12,local,class=CODE,merge=1,delta=2
+    27                           	psect	text13,local,class=CODE,merge=1,delta=2
+    28                           	psect	text14,local,class=CODE,merge=1,delta=2,group=1
+    29                           	psect	text15,local,class=CODE,merge=1,delta=2
+    30                           	psect	intentry,global,class=CODE,delta=2
+    31                           	psect	text16,local,class=CODE,merge=1,delta=2
+    32                           	psect	text17,local,class=CODE,merge=1,delta=2
+    33                           	psect	text18,local,class=CODE,merge=1,delta=2
+    34                           	psect	text19,local,class=CODE,merge=1,delta=2
+    35                           	psect	text20,local,class=CODE,merge=1,delta=2
+    36                           	psect	text21,local,class=CODE,merge=1,delta=2,group=1
+    37                           	psect	text22,local,class=CODE,merge=1,delta=2
+    38                           	psect	text23,local,class=CODE,merge=1,delta=2
+    39                           	psect	text24,local,class=CODE,merge=1,delta=2
+    40                           	psect	text25,local,class=CODE,merge=1,delta=2
+    41                           	psect	text26,local,class=CODE,merge=1,delta=2
+    42                           	psect	text27,local,class=CODE,merge=1,delta=2,group=1
+    43                           	dabs	1,0x7E,2
+    44  0000                     
+    45                           ; Version 2.05
+    46                           ; Generated 20/12/2018 GMT
+    47                           ; 
+    48                           ; Copyright © 2018, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    49                           ; All rights reserved.
+    50                           ; 
+    51                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
       +                          ip").
-    16                           ; 
-    17                           ; Redistribution and use in source and binary forms, with or without modification, are
-    18                           ; permitted provided that the following conditions are met:
-    19                           ; 
-    20                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+    52                           ; 
+    53                           ; Redistribution and use in source and binary forms, with or without modification, are
+    54                           ; permitted provided that the following conditions are met:
+    55                           ; 
+    56                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
       +                          t of
-    21                           ;        conditions and the following disclaimer.
-    22                           ; 
-    23                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+    57                           ;        conditions and the following disclaimer.
+    58                           ; 
+    59                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
       +                          list
-    24                           ;        of conditions and the following disclaimer in the documentation and/or other
-    25                           ;        materials provided with the distribution.
-    26                           ; 
-    27                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+    60                           ;        of conditions and the following disclaimer in the documentation and/or other
+    61                           ;        materials provided with the distribution.
+    62                           ; 
+    63                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
       +                          is
-    28                           ;        software without specific prior written permission.
-    29                           ; 
-    30                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-    31                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+    64                           ;        software without specific prior written permission.
+    65                           ; 
+    66                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    67                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
       +                          OR
-    32                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+    68                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
       +                          T,
-    33                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
-    34                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
-    35                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+    69                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    70                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    71                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
       +                          RICT
-    36                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+    72                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
       +                          SE OF
-    37                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-    38                           ; 
-    39                           ; 
-    40                           ; Code-generator required, PIC16F628A Definitions
-    41                           ; 
-    42                           ; SFR Addresses
-    43  0000                     	;# 
-    44  0001                     	;# 
-    45  0002                     	;# 
-    46  0003                     	;# 
-    47  0004                     	;# 
-    48  0005                     	;# 
-    49  0006                     	;# 
-    50  000A                     	;# 
-    51  000B                     	;# 
-    52  000C                     	;# 
-    53  000E                     	;# 
-    54  000E                     	;# 
-    55  000F                     	;# 
-    56  0010                     	;# 
-    57  0011                     	;# 
-    58  0012                     	;# 
-    59  0015                     	;# 
-    60  0015                     	;# 
-    61  0016                     	;# 
-    62  0017                     	;# 
-    63  0018                     	;# 
-    64  0019                     	;# 
-    65  001A                     	;# 
-    66  001F                     	;# 
-    67  0081                     	;# 
-    68  0085                     	;# 
-    69  0086                     	;# 
-    70  008C                     	;# 
-    71  008E                     	;# 
-    72  0092                     	;# 
-    73  0098                     	;# 
-    74  0099                     	;# 
-    75  009A                     	;# 
-    76  009B                     	;# 
-    77  009C                     	;# 
-    78  009D                     	;# 
-    79  009F                     	;# 
-    80  0000                     	;# 
-    81  0001                     	;# 
-    82  0002                     	;# 
-    83  0003                     	;# 
-    84  0004                     	;# 
-    85  0005                     	;# 
-    86  0006                     	;# 
-    87  000A                     	;# 
-    88  000B                     	;# 
-    89  000C                     	;# 
+    73                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    74                           ; 
+    75                           ; 
+    76                           ; Code-generator required, PIC16F628A Definitions
+    77                           ; 
+    78                           ; SFR Addresses
+    79  0000                     	;# 
+    80  0001                     	;# 
+    81  0002                     	;# 
+    82  0003                     	;# 
+    83  0004                     	;# 
+    84  0005                     	;# 
+    85  0006                     	;# 
+    86  000A                     	;# 
+    87  000B                     	;# 
+    88  000C                     	;# 
+    89  000E                     	;# 
     90  000E                     	;# 
-    91  000E                     	;# 
-    92  000F                     	;# 
-    93  0010                     	;# 
-    94  0011                     	;# 
-    95  0012                     	;# 
+    91  000F                     	;# 
+    92  0010                     	;# 
+    93  0011                     	;# 
+    94  0012                     	;# 
+    95  0015                     	;# 
     96  0015                     	;# 
-    97  0015                     	;# 
-    98  0016                     	;# 
-    99  0017                     	;# 
-   100  0018                     	;# 
-   101  0019                     	;# 
-   102  001A                     	;# 
-   103  001F                     	;# 
-   104  0081                     	;# 
-   105  0085                     	;# 
-   106  0086                     	;# 
-   107  008C                     	;# 
-   108  008E                     	;# 
-   109  0092                     	;# 
-   110  0098                     	;# 
-   111  0099                     	;# 
-   112  009A                     	;# 
-   113  009B                     	;# 
-   114  009C                     	;# 
-   115  009D                     	;# 
-   116  009F                     	;# 
-   117                           
-   118                           ; #config settings
-   119  0000                     
-   120                           	psect	cinit
-   121  07FE                     start_initialization:	
-   122  07FE                     __initialization:	
-   123  07FE                     end_of_initialization:	
-   124                           ;End of C runtime variable initialization code
-   125                           
-   126  07FE                     __end_of__initialization:	
-   127  07FE  0183               	clrf	3
-   128  07FF  2FFD               	ljmp	_main	;jump to C main() function
-   129                           
-   130                           	psect	cstackCOMMON
-   131  0000                     __pcstackCOMMON:	
-   132  0000                     ?_main:	
-   133  0000                     ??_main:	
-   134                           ; 1 bytes @ 0x0
-   135                           
-   136                           
-   137                           	psect	maintext
-   138  07FD                     __pmaintext:	
-   139                           ; 1 bytes @ 0x0
-   140 ;;
-   141 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   142 ;;
-   143 ;; *************** function _main *****************
-   144 ;; Defined at:
-   145 ;;		line 25 in file "../src/src.c"
-   146 ;; Parameters:    Size  Location     Type
-   147 ;;		None
-   148 ;; Auto vars:     Size  Location     Type
-   149 ;;		None
-   150 ;; Return value:  Size  Location     Type
-   151 ;;                  1    wreg      void 
-   152 ;; Registers used:
-   153 ;;		None
-   154 ;; Tracked objects:
-   155 ;;		On entry : B00/0
-   156 ;;		On exit  : 0/0
-   157 ;;		Unchanged: 0/0
-   158 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
-   159 ;;      Params:         0       0       0       0
-   160 ;;      Locals:         0       0       0       0
-   161 ;;      Temps:          0       0       0       0
-   162 ;;      Totals:         0       0       0       0
-   163 ;;Total ram usage:        0 bytes
-   164 ;; This function calls:
-   165 ;;		Nothing
-   166 ;; This function is called by:
-   167 ;;		Startup code after reset
-   168 ;; This function uses a non-reentrant model
-   169 ;;
-   170                           
-   171                           
-   172                           ;psect for function _main
-   173  07FD                     _main:	
-   174  07FD                     l5:	
-   175                           ;incstack = 0
-   176                           ; Regs used in _main: []
-   177                           
-   178  07FD  2FFD               	goto	l5
-   179  07FE                     __end_of_main:	
-   180  007E                     btemp	set	126	;btemp
-   181  007E                     wtemp0	set	126
+    97  0016                     	;# 
+    98  0017                     	;# 
+    99  0018                     	;# 
+   100  0019                     	;# 
+   101  001A                     	;# 
+   102  001F                     	;# 
+   103  0081                     	;# 
+   104  0085                     	;# 
+   105  0086                     	;# 
+   106  008C                     	;# 
+   107  008E                     	;# 
+   108  0092                     	;# 
+   109  0098                     	;# 
+   110  0099                     	;# 
+   111  009A                     	;# 
+   112  009B                     	;# 
+   113  009C                     	;# 
+   114  009D                     	;# 
+   115  009F                     	;# 
+   116  0000                     	;# 
+   117  0001                     	;# 
+   118  0002                     	;# 
+   119  0003                     	;# 
+   120  0004                     	;# 
+   121  0005                     	;# 
+   122  0006                     	;# 
+   123  000A                     	;# 
+   124  000B                     	;# 
+   125  000C                     	;# 
+   126  000E                     	;# 
+   127  000E                     	;# 
+   128  000F                     	;# 
+   129  0010                     	;# 
+   130  0011                     	;# 
+   131  0012                     	;# 
+   132  0015                     	;# 
+   133  0015                     	;# 
+   134  0016                     	;# 
+   135  0017                     	;# 
+   136  0018                     	;# 
+   137  0019                     	;# 
+   138  001A                     	;# 
+   139  001F                     	;# 
+   140  0081                     	;# 
+   141  0085                     	;# 
+   142  0086                     	;# 
+   143  008C                     	;# 
+   144  008E                     	;# 
+   145  0092                     	;# 
+   146  0098                     	;# 
+   147  0099                     	;# 
+   148  009A                     	;# 
+   149  009B                     	;# 
+   150  009C                     	;# 
+   151  009D                     	;# 
+   152  009F                     	;# 
+   153  0000                     	;# 
+   154  0001                     	;# 
+   155  0002                     	;# 
+   156  0003                     	;# 
+   157  0004                     	;# 
+   158  0005                     	;# 
+   159  0006                     	;# 
+   160  000A                     	;# 
+   161  000B                     	;# 
+   162  000C                     	;# 
+   163  000E                     	;# 
+   164  000E                     	;# 
+   165  000F                     	;# 
+   166  0010                     	;# 
+   167  0011                     	;# 
+   168  0012                     	;# 
+   169  0015                     	;# 
+   170  0015                     	;# 
+   171  0016                     	;# 
+   172  0017                     	;# 
+   173  0018                     	;# 
+   174  0019                     	;# 
+   175  001A                     	;# 
+   176  001F                     	;# 
+   177  0081                     	;# 
+   178  0085                     	;# 
+   179  0086                     	;# 
+   180  008C                     	;# 
+   181  008E                     	;# 
+   182  0092                     	;# 
+   183  0098                     	;# 
+   184  0099                     	;# 
+   185  009A                     	;# 
+   186  009B                     	;# 
+   187  009C                     	;# 
+   188  009D                     	;# 
+   189  009F                     	;# 
+   190  0000                     	;# 
+   191  0001                     	;# 
+   192  0002                     	;# 
+   193  0003                     	;# 
+   194  0004                     	;# 
+   195  0005                     	;# 
+   196  0006                     	;# 
+   197  000A                     	;# 
+   198  000B                     	;# 
+   199  000C                     	;# 
+   200  000E                     	;# 
+   201  000E                     	;# 
+   202  000F                     	;# 
+   203  0010                     	;# 
+   204  0011                     	;# 
+   205  0012                     	;# 
+   206  0015                     	;# 
+   207  0015                     	;# 
+   208  0016                     	;# 
+   209  0017                     	;# 
+   210  0018                     	;# 
+   211  0019                     	;# 
+   212  001A                     	;# 
+   213  001F                     	;# 
+   214  0081                     	;# 
+   215  0085                     	;# 
+   216  0086                     	;# 
+   217  008C                     	;# 
+   218  008E                     	;# 
+   219  0092                     	;# 
+   220  0098                     	;# 
+   221  0099                     	;# 
+   222  009A                     	;# 
+   223  009B                     	;# 
+   224  009C                     	;# 
+   225  009D                     	;# 
+   226  009F                     	;# 
+   227  0000                     	;# 
+   228  0001                     	;# 
+   229  0002                     	;# 
+   230  0003                     	;# 
+   231  0004                     	;# 
+   232  0005                     	;# 
+   233  0006                     	;# 
+   234  000A                     	;# 
+   235  000B                     	;# 
+   236  000C                     	;# 
+   237  000E                     	;# 
+   238  000E                     	;# 
+   239  000F                     	;# 
+   240  0010                     	;# 
+   241  0011                     	;# 
+   242  0012                     	;# 
+   243  0015                     	;# 
+   244  0015                     	;# 
+   245  0016                     	;# 
+   246  0017                     	;# 
+   247  0018                     	;# 
+   248  0019                     	;# 
+   249  001A                     	;# 
+   250  001F                     	;# 
+   251  0081                     	;# 
+   252  0085                     	;# 
+   253  0086                     	;# 
+   254  008C                     	;# 
+   255  008E                     	;# 
+   256  0092                     	;# 
+   257  0098                     	;# 
+   258  0099                     	;# 
+   259  009A                     	;# 
+   260  009B                     	;# 
+   261  009C                     	;# 
+   262  009D                     	;# 
+   263  009F                     	;# 
+   264  0000                     	;# 
+   265  0001                     	;# 
+   266  0002                     	;# 
+   267  0003                     	;# 
+   268  0004                     	;# 
+   269  0005                     	;# 
+   270  0006                     	;# 
+   271  000A                     	;# 
+   272  000B                     	;# 
+   273  000C                     	;# 
+   274  000E                     	;# 
+   275  000E                     	;# 
+   276  000F                     	;# 
+   277  0010                     	;# 
+   278  0011                     	;# 
+   279  0012                     	;# 
+   280  0015                     	;# 
+   281  0015                     	;# 
+   282  0016                     	;# 
+   283  0017                     	;# 
+   284  0018                     	;# 
+   285  0019                     	;# 
+   286  001A                     	;# 
+   287  001F                     	;# 
+   288  0081                     	;# 
+   289  0085                     	;# 
+   290  0086                     	;# 
+   291  008C                     	;# 
+   292  008E                     	;# 
+   293  0092                     	;# 
+   294  0098                     	;# 
+   295  0099                     	;# 
+   296  009A                     	;# 
+   297  009B                     	;# 
+   298  009C                     	;# 
+   299  009D                     	;# 
+   300  009F                     	;# 
+   301                           
+   302                           	psect	idataCOMMON
+   303  0343                     __pidataCOMMON:	
+   304                           
+   305                           ;initializer for _SysOs_Tick_Counter
+   306  0343  3401               	retlw	1
+   307                           
+   308                           	psect	idataBANK0
+   309  0344                     __pidataBANK0:	
+   310                           
+   311                           ;initializer for Seven_Seg_Display@Toggle_Seg
+   312  0344  3401               	retlw	1
+   313                           
+   314                           	psect	strings
+   315  02EC                     __pstrings:	
+   316  02EC                     stringtab:	
+   317  02EC                     __stringtab:	
+   318  02EC                     stringcode:	
+   319                           ;	String table - string pointers are 1 byte each
+   320                           
+   321  02EC                     stringdir:	
+   322  02EC  3002               	movlw	high stringdir
+   323  02ED  008A               	movwf	10
+   324  02EE  0804               	movf	4,w
+   325  02EF  0A84               	incf	4,f
+   326  02F0  0782               	addwf	2,f
+   327  02F1                     __stringbase:	
+   328  02F1  3400               	retlw	0
+   329  02F2                     __end_of__stringtab:	
+   330  02F2                     _Digits:	
+   331  02F2  343F               	retlw	63
+   332  02F3  3406               	retlw	6
+   333  02F4  345B               	retlw	91
+   334  02F5  344F               	retlw	79
+   335  02F6  3466               	retlw	102
+   336  02F7  346D               	retlw	109
+   337  02F8  347D               	retlw	125
+   338  02F9  3407               	retlw	7
+   339  02FA  347F               	retlw	127
+   340  02FB  346F               	retlw	111
+   341  02FC                     __end_of_Digits:	
+   342  0010                     _T1CON	set	16
+   343  000F                     _TMR1H	set	15
+   344  000E                     _TMR1L	set	14
+   345  0001                     _TMR0	set	1
+   346  0005                     _PORTA	set	5
+   347  001F                     _CMCON	set	31
+   348  0006                     _PORTB	set	6
+   349  002F                     _RA7	set	47
+   350  002C                     _RA4	set	44
+   351  002B                     _RA3	set	43
+   352  002A                     _RA2	set	42
+   353  005C                     _INTE	set	92
+   354  005D                     _T0IE	set	93
+   355  005F                     _GIE	set	95
+   356  0060                     _TMR1IF	set	96
+   357  005A                     _T0IF	set	90
+   358  0029                     _RA1	set	41
+   359  0028                     _RA0	set	40
+   360  0081                     _OPTION_REG	set	129
+   361  0086                     _TRISB	set	134
+   362  0085                     _TRISA	set	133
+   363                           
+   364                           ; #config settings
+   365  0000                     
+   366                           	psect	cinit
+   367  0011                     start_initialization:	
+   368  0011                     __initialization:	
+   369                           
+   370                           ; Initialize objects allocated to BANK0
+   371  0011  2344               	fcall	__pidataBANK0	;fetch initializer
+   372  0012  00B5               	movwf	__pdataBANK0& (0+127)
+   373                           
+   374                           ; Initialize objects allocated to COMMON
+   375  0013  2343               	fcall	__pidataCOMMON	;fetch initializer
+   376  0014  00FD               	movwf	__pdataCOMMON& (0+127)
+   377                           
+   378                           ; Clear objects allocated to BANK0
+   379  0015  01AC               	clrf	__pbssBANK0& (0+127)
+   380  0016  01AD               	clrf	(__pbssBANK0+1)& (0+127)
+   381  0017  01AE               	clrf	(__pbssBANK0+2)& (0+127)
+   382  0018  01AF               	clrf	(__pbssBANK0+3)& (0+127)
+   383  0019  01B0               	clrf	(__pbssBANK0+4)& (0+127)
+   384  001A  01B1               	clrf	(__pbssBANK0+5)& (0+127)
+   385  001B  01B2               	clrf	(__pbssBANK0+6)& (0+127)
+   386  001C  01B3               	clrf	(__pbssBANK0+7)& (0+127)
+   387  001D  01B4               	clrf	(__pbssBANK0+8)& (0+127)
+   388                           
+   389                           ; Clear objects allocated to COMMON
+   390  001E  01FC               	clrf	__pbssCOMMON& (0+127)
+   391  001F                     end_of_initialization:	
+   392                           ;End of C runtime variable initialization code
+   393                           
+   394  001F                     __end_of__initialization:	
+   395  001F  0183               	clrf	3
+   396  0020  2AB5               	ljmp	_main	;jump to C main() function
+   397                           
+   398                           	psect	bssCOMMON
+   399  007C                     __pbssCOMMON:	
+   400  007C                     _SysOs_Handle:	
+   401  007C                     	ds	1
+   402                           
+   403                           	psect	dataCOMMON
+   404  007D                     __pdataCOMMON:	
+   405  007D                     _SysOs_Tick_Counter:	
+   406  007D                     	ds	1
+   407                           
+   408                           	psect	bssBANK0
+   409  002C                     __pbssBANK0:	
+   410  002C                     _Global_Delay:	
+   411  002C                     	ds	2
+   412  002E                     _Segment_Handler:	
+   413  002E                     	ds	2
+   414  0030                     SetTime_Button_Handler@KeyPressed:	
+   415  0030                     	ds	1
+   416  0031                     SetTime_Button_Handler@KeyPressCount:	
+   417  0031                     	ds	1
+   418  0032                     _System_Time_Shadow:	
+   419  0032                     	ds	1
+   420  0033                     _SetTimeHandler:	
+   421  0033                     	ds	2
+   422                           
+   423                           	psect	dataBANK0
+   424  0035                     __pdataBANK0:	
+   425  0035                     Seven_Seg_Display@Toggle_Seg:	
+   426  0035                     	ds	1
+   427                           
+   428                           	psect	cstackCOMMON
+   429  0070                     __pcstackCOMMON:	
+   430  0070                     ?_SysOs_Task_Eval:	
+   431  0070                     ?_SysOs_Task_Exe:	
+   432                           ; 1 bytes @ 0x0
+   433                           
+   434  0070                     ?_SysOs_Init:	
+   435                           ; 1 bytes @ 0x0
+   436                           
+   437  0070                     ?_SetTime_Main:	
+   438                           ; 1 bytes @ 0x0
+   439                           
+   440  0070                     ?_ComControl_Main:	
+   441                           ; 1 bytes @ 0x0
+   442                           
+   443  0070                     ?_SetTime_Init:	
+   444                           ; 1 bytes @ 0x0
+   445                           
+   446  0070                     ?_SetTime_Button_Handler:	
+   447                           ; 1 bytes @ 0x0
+   448                           
+   449  0070                     ??_SetTime_Button_Handler:	
+   450                           ; 1 bytes @ 0x0
+   451                           
+   452  0070                     ?_ComControl_Monitor_Time:	
+   453                           ; 1 bytes @ 0x0
+   454                           
+   455  0070                     ??_ComControl_Monitor_Time:	
+   456                           ; 1 bytes @ 0x0
+   457                           
+   458  0070                     ?_Seven_Seg_Display:	
+   459                           ; 1 bytes @ 0x0
+   460                           
+   461  0070                     ?_Seven_Seg_Enable:	
+   462                           ; 1 bytes @ 0x0
+   463                           
+   464  0070                     ?_Seven_Seg_Disable:	
+   465                           ; 1 bytes @ 0x0
+   466                           
+   467  0070                     ?_Seven_Seg_Init:	
+   468                           ; 1 bytes @ 0x0
+   469                           
+   470  0070                     ?_ISR:	
+   471                           ; 1 bytes @ 0x0
+   472                           
+   473  0070                     ?_main:	
+   474                           ; 1 bytes @ 0x0
+   475                           
+   476  0070                     ?_Timer0_Interrupt_Init:	
+   477                           ; 1 bytes @ 0x0
+   478                           
+   479  0070                     ?_xTask_10ms:	
+   480                           ; 1 bytes @ 0x0
+   481                           
+   482  0070                     ?_xTask_20ms:	
+   483                           ; 1 bytes @ 0x0
+   484                           
+   485  0070                     ??_xTask_20ms:	
+   486                           ; 1 bytes @ 0x0
+   487                           
+   488  0070                     ?_xTask_50ms:	
+   489                           ; 1 bytes @ 0x0
+   490                           
+   491  0070                     ??_xTask_50ms:	
+   492                           ; 1 bytes @ 0x0
+   493                           
+   494  0070                     ?_xTask_100ms:	
+   495                           ; 1 bytes @ 0x0
+   496                           
+   497  0070                     ?_xTask_1000ms:	
+   498                           ; 1 bytes @ 0x0
+   499                           
+   500  0070                     ?_SetTime_For_On:	
+   501                           ; 1 bytes @ 0x0
+   502                           
+   503  0070                     ?_SetTime_For_Off:	
+   504                           ; 1 bytes @ 0x0
+   505                           
+   506  0070                     ?_ComControl_OnTime:	
+   507                           ; 1 bytes @ 0x0
+   508                           
+   509  0070                     ?_ComControl_OffTime:	
+   510                           ; 1 bytes @ 0x0
+   511                           
+   512  0070                     ?___awdiv:	
+   513                           ; 1 bytes @ 0x0
+   514                           
+   515  0070                     ?___awmod:	
+   516                           ; 2 bytes @ 0x0
+   517                           
+   518  0070                     ___awdiv@divisor:	
+   519                           ; 2 bytes @ 0x0
+   520                           
+   521  0070                     ___awmod@divisor:	
+   522                           ; 2 bytes @ 0x0
+   523                           
+   524                           
+   525                           ; 2 bytes @ 0x0
+   526  0070                     	ds	1
+   527  0071                     ??_xTask_1000ms:	
+   528                           
+   529                           ; 1 bytes @ 0x1
+   530  0071                     	ds	1
+   531  0072                     ??_xTask_100ms:	
+   532  0072                     ___awdiv@dividend:	
+   533                           ; 1 bytes @ 0x2
+   534                           
+   535  0072                     ___awmod@dividend:	
+   536                           ; 2 bytes @ 0x2
+   537                           
+   538                           
+   539                           ; 2 bytes @ 0x2
+   540  0072                     	ds	2
+   541  0074                     ??___awdiv:	
+   542  0074                     ??___awmod:	
+   543                           ; 1 bytes @ 0x4
+   544                           
+   545                           
+   546                           ; 1 bytes @ 0x4
+   547  0074                     	ds	1
+   548  0075                     ___awdiv@counter:	
+   549  0075                     ___awmod@counter:	
+   550                           ; 1 bytes @ 0x5
+   551                           
+   552                           
+   553                           ; 1 bytes @ 0x5
+   554  0075                     	ds	1
+   555  0076                     ___awdiv@sign:	
+   556  0076                     ___awmod@sign:	
+   557                           ; 1 bytes @ 0x6
+   558                           
+   559                           
+   560                           ; 1 bytes @ 0x6
+   561  0076                     	ds	1
+   562  0077                     ??_SysOs_Task_Eval:	
+   563  0077                     ___awdiv@quotient:	
+   564                           ; 1 bytes @ 0x7
+   565                           
+   566                           
+   567                           ; 2 bytes @ 0x7
+   568  0077                     	ds	2
+   569  0079                     ??_Seven_Seg_Display:	
+   570                           
+   571                           ; 1 bytes @ 0x9
+   572  0079                     	ds	3
+   573  007C                     ??_SysOs_Task_Exe:	
+   574  007C                     ??_xTask_10ms:	
+   575                           ; 1 bytes @ 0xC
+   576                           
+   577                           
+   578                           	psect	cstackBANK0
+   579  0020                     __pcstackBANK0:	
+   580                           ; 1 bytes @ 0xC
+   581                           
+   582  0020                     ??_ISR:	
+   583                           
+   584                           ; 1 bytes @ 0x0
+   585  0020                     	ds	4
+   586  0024                     ??_SetTime_Init:	
+   587  0024                     ??_Seven_Seg_Enable:	
+   588                           ; 1 bytes @ 0x4
+   589                           
+   590  0024                     ??_Seven_Seg_Disable:	
+   591                           ; 1 bytes @ 0x4
+   592                           
+   593  0024                     ??_Seven_Seg_Init:	
+   594                           ; 1 bytes @ 0x4
+   595                           
+   596  0024                     ??_Timer0_Interrupt_Init:	
+   597                           ; 1 bytes @ 0x4
+   598                           
+   599  0024                     ?_SetTime_Delay:	
+   600                           ; 1 bytes @ 0x4
+   601                           
+   602  0024                     ??_ComControl_OnTime:	
+   603                           ; 1 bytes @ 0x4
+   604                           
+   605  0024                     ?___bmul:	
+   606                           ; 1 bytes @ 0x4
+   607                           
+   608  0024                     SetTime_Delay@Limit_Lwr:	
+   609                           ; 1 bytes @ 0x4
+   610                           
+   611  0024                     ___bmul@multiplicand:	
+   612                           ; 1 bytes @ 0x4
+   613                           
+   614                           
+   615                           ; 1 bytes @ 0x4
+   616  0024                     	ds	1
+   617  0025                     ??_SysOs_Init:	
+   618  0025                     ??_SetTime_Delay:	
+   619                           ; 1 bytes @ 0x5
+   620                           
+   621  0025                     ??___bmul:	
+   622                           ; 1 bytes @ 0x5
+   623                           
+   624                           
+   625                           ; 1 bytes @ 0x5
+   626  0025                     	ds	1
+   627  0026                     ___bmul@product:	
+   628                           
+   629                           ; 1 bytes @ 0x6
+   630  0026                     	ds	1
+   631  0027                     SetTime_Delay@Limit_Upr:	
+   632  0027                     ___bmul@multiplier:	
+   633                           ; 1 bytes @ 0x7
+   634                           
+   635                           
+   636                           ; 1 bytes @ 0x7
+   637  0027                     	ds	1
+   638  0028                     ??_ComControl_OffTime:	
+   639  0028                     SetTime_Delay@temp:	
+   640                           ; 1 bytes @ 0x8
+   641                           
+   642                           
+   643                           ; 2 bytes @ 0x8
+   644  0028                     	ds	2
+   645  002A                     ??_ComControl_Main:	
+   646  002A                     ??_SetTime_For_On:	
+   647                           ; 1 bytes @ 0xA
+   648                           
+   649  002A                     ??_SetTime_For_Off:	
+   650                           ; 1 bytes @ 0xA
+   651                           
+   652                           
+   653                           ; 1 bytes @ 0xA
+   654  002A                     	ds	1
+   655  002B                     ??_SetTime_Main:	
+   656                           
+   657                           ; 1 bytes @ 0xB
+   658  002B                     	ds	1
+   659  002C                     ??_main:	
+   660                           
+   661                           	psect	maintext
+   662  02B5                     __pmaintext:	
+   663                           ; 1 bytes @ 0xC
+   664 ;;
+   665 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   666 ;;
+   667 ;; *************** function _main *****************
+   668 ;; Defined at:
+   669 ;;		line 39 in file "../src/src.c"
+   670 ;; Parameters:    Size  Location     Type
+   671 ;;		None
+   672 ;; Auto vars:     Size  Location     Type
+   673 ;;		None
+   674 ;; Return value:  Size  Location     Type
+   675 ;;                  1    wreg      void 
+   676 ;; Registers used:
+   677 ;;		wreg, status,2, status,0, pclath, cstack
+   678 ;; Tracked objects:
+   679 ;;		On entry : B00/0
+   680 ;;		On exit  : 0/0
+   681 ;;		Unchanged: 0/0
+   682 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   683 ;;      Params:         0       0       0       0
+   684 ;;      Locals:         0       0       0       0
+   685 ;;      Temps:          0       0       0       0
+   686 ;;      Totals:         0       0       0       0
+   687 ;;Total ram usage:        0 bytes
+   688 ;; Hardware stack levels required when called:    8
+   689 ;; This function calls:
+   690 ;;		_ComControl_Main
+   691 ;;		_SetTime_Main
+   692 ;;		_Seven_Seg_Enable
+   693 ;;		_SysOs_Init
+   694 ;; This function is called by:
+   695 ;;		Startup code after reset
+   696 ;; This function uses a non-reentrant model
+   697 ;;
+   698                           
+   699                           
+   700                           ;psect for function _main
+   701  02B5                     _main:	
+   702                           
+   703                           ;incstack = 0
+   704                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   705  02B5  1283               	bcf	3,5	;RP0=0, select bank0
+   706  02B6  1303               	bcf	3,6	;RP1=0, select bank0
+   707  02B7  0833               	movf	_SetTimeHandler,w
+   708  02B8  390F               	andlw	-241
+   709  02B9  3890               	iorlw	144
+   710  02BA  00B3               	movwf	_SetTimeHandler
+   711  02BB  01B4               	clrf	_SetTimeHandler+1
+   712  02BC  0AB4               	incf	_SetTimeHandler+1,f
+   713  02BD  232F               	fcall	_SysOs_Init
+   714  02BE  2339               	fcall	_Seven_Seg_Enable
+   715  02BF  1283               	bcf	3,5	;RP0=0, select bank0
+   716  02C0  1303               	bcf	3,6	;RP1=0, select bank0
+   717  02C1  0833               	movf	_SetTimeHandler,w
+   718  02C2  39F3               	andlw	-13
+   719  02C3  3808               	iorlw	8
+   720  02C4  00B3               	movwf	_SetTimeHandler
+   721  02C5                     l1530:	
+   722  02C5  22DB               	fcall	_SetTime_Main
+   723  02C6  230C               	fcall	_ComControl_Main
+   724  02C7  2AC5               	goto	l1530
+   725  02C8                     __end_of_main:	
+   726                           
+   727                           	psect	text1
+   728  032F                     __ptext1:	
+   729 ;; *************** function _SysOs_Init *****************
+   730 ;; Defined at:
+   731 ;;		line 16 in file "../core/sysos/src/sys_os.c"
+   732 ;; Parameters:    Size  Location     Type
+   733 ;;		None
+   734 ;; Auto vars:     Size  Location     Type
+   735 ;;		None
+   736 ;; Return value:  Size  Location     Type
+   737 ;;                  1    wreg      void 
+   738 ;; Registers used:
+   739 ;;		wreg, status,2, status,0, pclath, cstack
+   740 ;; Tracked objects:
+   741 ;;		On entry : 0/0
+   742 ;;		On exit  : 0/0
+   743 ;;		Unchanged: 0/0
+   744 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   745 ;;      Params:         0       0       0       0
+   746 ;;      Locals:         0       0       0       0
+   747 ;;      Temps:          0       0       0       0
+   748 ;;      Totals:         0       0       0       0
+   749 ;;Total ram usage:        0 bytes
+   750 ;; Hardware stack levels used:    1
+   751 ;; Hardware stack levels required when called:    6
+   752 ;; This function calls:
+   753 ;;		_SetTime_Init
+   754 ;;		_Seven_Seg_Disable
+   755 ;;		_Seven_Seg_Init
+   756 ;;		_Timer0_Interrupt_Init
+   757 ;; This function is called by:
+   758 ;;		_main
+   759 ;; This function uses a non-reentrant model
+   760 ;;
+   761                           
+   762                           
+   763                           ;psect for function _SysOs_Init
+   764  032F                     _SysOs_Init:	
+   765                           
+   766                           ;../core/sysos/src/sys_os.c: 18:     Seven_Seg_Init();
+   767                           
+   768                           ;incstack = 0
+   769                           ; Regs used in _SysOs_Init: [wreg+status,2+status,0+pclath+cstack]
+   770  032F  2289               	fcall	_Seven_Seg_Init
+   771                           
+   772                           ;../core/sysos/src/sys_os.c: 20:     SetTime_Init();
+   773  0330  2270               	fcall	_SetTime_Init
+   774                           
+   775                           ;../core/sysos/src/sys_os.c: 23:     Seven_Seg_Disable();
+   776  0331  2334               	fcall	_Seven_Seg_Disable
+   777                           
+   778                           ;../core/sysos/src/sys_os.c: 25:     Timer0_Interrupt_Init();
+   779  0332  2324               	fcall	_Timer0_Interrupt_Init
+   780  0333  0008               	return
+   781  0334                     __end_of_SysOs_Init:	
+   782                           
+   783                           	psect	text2
+   784  0324                     __ptext2:	
+   785 ;; *************** function _Timer0_Interrupt_Init *****************
+   786 ;; Defined at:
+   787 ;;		line 43 in file "../core/pic628a/timer/src/timer.c"
+   788 ;; Parameters:    Size  Location     Type
+   789 ;;		None
+   790 ;; Auto vars:     Size  Location     Type
+   791 ;;		None
+   792 ;; Return value:  Size  Location     Type
+   793 ;;                  1    wreg      void 
+   794 ;; Registers used:
+   795 ;;		wreg
+   796 ;; Tracked objects:
+   797 ;;		On entry : 0/0
+   798 ;;		On exit  : 0/0
+   799 ;;		Unchanged: 0/0
+   800 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   801 ;;      Params:         0       0       0       0
+   802 ;;      Locals:         0       0       0       0
+   803 ;;      Temps:          0       0       0       0
+   804 ;;      Totals:         0       0       0       0
+   805 ;;Total ram usage:        0 bytes
+   806 ;; Hardware stack levels used:    1
+   807 ;; Hardware stack levels required when called:    5
+   808 ;; This function calls:
+   809 ;;		Nothing
+   810 ;; This function is called by:
+   811 ;;		_SysOs_Init
+   812 ;; This function uses a non-reentrant model
+   813 ;;
+   814                           
+   815                           
+   816                           ;psect for function _Timer0_Interrupt_Init
+   817  0324                     _Timer0_Interrupt_Init:	
+   818                           
+   819                           ;../core/pic628a/timer/src/timer.c: 46:  GIE = 1;
+   820                           
+   821                           ;incstack = 0
+   822                           ; Regs used in _Timer0_Interrupt_Init: [wreg]
+   823  0324  178B               	bsf	11,7	;volatile
+   824                           
+   825                           ;../core/pic628a/timer/src/timer.c: 49:     T0IE= 1;
+   826  0325  168B               	bsf	11,5	;volatile
+   827                           
+   828                           ;../core/pic628a/timer/src/timer.c: 52:     OPTION_REG = 0b10000101;
+   829  0326  3085               	movlw	133
+   830  0327  1683               	bsf	3,5	;RP0=1, select bank1
+   831  0328  1303               	bcf	3,6	;RP1=0, select bank1
+   832  0329  0081               	movwf	1	;volatile
+   833                           
+   834                           ;../core/pic628a/timer/src/timer.c: 55:     TMR0 = 100;
+   835  032A  3064               	movlw	100
+   836  032B  1283               	bcf	3,5	;RP0=0, select bank0
+   837  032C  1303               	bcf	3,6	;RP1=0, select bank0
+   838  032D  0081               	movwf	1	;volatile
+   839  032E  0008               	return
+   840  032F                     __end_of_Timer0_Interrupt_Init:	
+   841                           
+   842                           	psect	text3
+   843  0289                     __ptext3:	
+   844 ;; *************** function _Seven_Seg_Init *****************
+   845 ;; Defined at:
+   846 ;;		line 62 in file "../core/base/seven_seg/src/seven_seg.c"
+   847 ;; Parameters:    Size  Location     Type
+   848 ;;		None
+   849 ;; Auto vars:     Size  Location     Type
+   850 ;;		None
+   851 ;; Return value:  Size  Location     Type
+   852 ;;                  1    wreg      void 
+   853 ;; Registers used:
+   854 ;;		wreg, status,2, status,0
+   855 ;; Tracked objects:
+   856 ;;		On entry : 0/0
+   857 ;;		On exit  : 0/0
+   858 ;;		Unchanged: 0/0
+   859 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   860 ;;      Params:         0       0       0       0
+   861 ;;      Locals:         0       0       0       0
+   862 ;;      Temps:          0       1       0       0
+   863 ;;      Totals:         0       1       0       0
+   864 ;;Total ram usage:        1 bytes
+   865 ;; Hardware stack levels used:    1
+   866 ;; Hardware stack levels required when called:    5
+   867 ;; This function calls:
+   868 ;;		Nothing
+   869 ;; This function is called by:
+   870 ;;		_SysOs_Init
+   871 ;; This function uses a non-reentrant model
+   872 ;;
+   873                           
+   874                           
+   875                           ;psect for function _Seven_Seg_Init
+   876  0289                     _Seven_Seg_Init:	
+   877                           
+   878                           ;../core/base/seven_seg/src/seven_seg.c: 65:  CMCON = 0X07;
+   879                           
+   880                           ;incstack = 0
+   881                           ; Regs used in _Seven_Seg_Init: [wreg+status,2+status,0]
+   882  0289  3007               	movlw	7
+   883  028A  1283               	bcf	3,5	;RP0=0, select bank0
+   884  028B  1303               	bcf	3,6	;RP1=0, select bank0
+   885  028C  009F               	movwf	31	;volatile
+   886                           
+   887                           ;../core/base/seven_seg/src/seven_seg.c: 68:  TRISA &= (~(3<<0));
+   888  028D  30FC               	movlw	252
+   889  028E  00A4               	movwf	??_Seven_Seg_Init
+   890  028F  0824               	movf	??_Seven_Seg_Init,w
+   891  0290  1683               	bsf	3,5	;RP0=1, select bank1
+   892  0291  1303               	bcf	3,6	;RP1=0, select bank1
+   893  0292  0585               	andwf	5,f	;volatile
+   894                           
+   895                           ;../core/base/seven_seg/src/seven_seg.c: 69:  PORTA &= (~(3<<0));
+   896  0293  30FC               	movlw	252
+   897  0294  1283               	bcf	3,5	;RP0=0, select bank0
+   898  0295  1303               	bcf	3,6	;RP1=0, select bank0
+   899  0296  00A4               	movwf	??_Seven_Seg_Init
+   900  0297  0824               	movf	??_Seven_Seg_Init,w
+   901  0298  0585               	andwf	5,f	;volatile
+   902                           
+   903                           ;../core/base/seven_seg/src/seven_seg.c: 72:  TRISB = 0X01;
+   904  0299  3001               	movlw	1
+   905  029A  1683               	bsf	3,5	;RP0=1, select bank1
+   906  029B  1303               	bcf	3,6	;RP1=0, select bank1
+   907  029C  0086               	movwf	6	;volatile
+   908                           
+   909                           ;../core/base/seven_seg/src/seven_seg.c: 73:  PORTB = 0X00;
+   910  029D  1283               	bcf	3,5	;RP0=0, select bank0
+   911  029E  1303               	bcf	3,6	;RP1=0, select bank0
+   912  029F  0186               	clrf	6	;volatile
+   913  02A0  0008               	return
+   914  02A1                     __end_of_Seven_Seg_Init:	
+   915                           
+   916                           	psect	text4
+   917  0334                     __ptext4:	
+   918 ;; *************** function _Seven_Seg_Disable *****************
+   919 ;; Defined at:
+   920 ;;		line 54 in file "../core/base/seven_seg/src/seven_seg.c"
+   921 ;; Parameters:    Size  Location     Type
+   922 ;;		None
+   923 ;; Auto vars:     Size  Location     Type
+   924 ;;		None
+   925 ;; Return value:  Size  Location     Type
+   926 ;;                  1    wreg      void 
+   927 ;; Registers used:
+   928 ;;		status,2
+   929 ;; Tracked objects:
+   930 ;;		On entry : 0/0
+   931 ;;		On exit  : 0/0
+   932 ;;		Unchanged: 0/0
+   933 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   934 ;;      Params:         0       0       0       0
+   935 ;;      Locals:         0       0       0       0
+   936 ;;      Temps:          0       0       0       0
+   937 ;;      Totals:         0       0       0       0
+   938 ;;Total ram usage:        0 bytes
+   939 ;; Hardware stack levels used:    1
+   940 ;; Hardware stack levels required when called:    5
+   941 ;; This function calls:
+   942 ;;		Nothing
+   943 ;; This function is called by:
+   944 ;;		_SysOs_Init
+   945 ;; This function uses a non-reentrant model
+   946 ;;
+   947                           
+   948                           
+   949                           ;psect for function _Seven_Seg_Disable
+   950  0334                     _Seven_Seg_Disable:	
+   951                           
+   952                           ;../core/base/seven_seg/src/seven_seg.c: 56:     Segment_Handler.Segment_Enable = (uint8
+      +                          _t)0;
+   953                           
+   954                           ;incstack = 0
+   955                           ; Regs used in _Seven_Seg_Disable: [status,2]
+   956  0334  1283               	bcf	3,5	;RP0=0, select bank0
+   957  0335  1303               	bcf	3,6	;RP1=0, select bank0
+   958  0336  102F               	bcf	_Segment_Handler+1,0
+   959                           
+   960                           ;../core/base/seven_seg/src/seven_seg.c: 59:     PORTB = (uint8_t)0;
+   961  0337  0186               	clrf	6	;volatile
+   962  0338  0008               	return
+   963  0339                     __end_of_Seven_Seg_Disable:	
+   964                           
+   965                           	psect	text5
+   966  0270                     __ptext5:	
+   967 ;; *************** function _SetTime_Init *****************
+   968 ;; Defined at:
+   969 ;;		line 14 in file "../core/base/com_control/src/com_control.c"
+   970 ;; Parameters:    Size  Location     Type
+   971 ;;		None
+   972 ;; Auto vars:     Size  Location     Type
+   973 ;;		None
+   974 ;; Return value:  Size  Location     Type
+   975 ;;                  1    wreg      void 
+   976 ;; Registers used:
+   977 ;;		wreg, status,2, status,0
+   978 ;; Tracked objects:
+   979 ;;		On entry : 0/0
+   980 ;;		On exit  : 0/0
+   981 ;;		Unchanged: 0/0
+   982 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   983 ;;      Params:         0       0       0       0
+   984 ;;      Locals:         0       0       0       0
+   985 ;;      Temps:          0       1       0       0
+   986 ;;      Totals:         0       1       0       0
+   987 ;;Total ram usage:        1 bytes
+   988 ;; Hardware stack levels used:    1
+   989 ;; Hardware stack levels required when called:    5
+   990 ;; This function calls:
+   991 ;;		Nothing
+   992 ;; This function is called by:
+   993 ;;		_SysOs_Init
+   994 ;; This function uses a non-reentrant model
+   995 ;;
+   996                           
+   997                           
+   998                           ;psect for function _SetTime_Init
+   999  0270                     _SetTime_Init:	
+  1000                           
+  1001                           ;../core/base/com_control/src/com_control.c: 21:  TRISA |= (1 << 2) | (1 << 3) | (1 << 4
+      +                          );
+  1002                           
+  1003                           ;incstack = 0
+  1004                           ; Regs used in _SetTime_Init: [wreg+status,2+status,0]
+  1005  0270  301C               	movlw	28
+  1006  0271  1283               	bcf	3,5	;RP0=0, select bank0
+  1007  0272  1303               	bcf	3,6	;RP1=0, select bank0
+  1008  0273  00A4               	movwf	??_SetTime_Init
+  1009  0274  0824               	movf	??_SetTime_Init,w
+  1010  0275  1683               	bsf	3,5	;RP0=1, select bank1
+  1011  0276  1303               	bcf	3,6	;RP1=0, select bank1
+  1012  0277  0485               	iorwf	5,f	;volatile
+  1013                           
+  1014                           ;../core/base/com_control/src/com_control.c: 26:  TRISA &= (~(1<<7));
+  1015  0278  307F               	movlw	127
+  1016  0279  1283               	bcf	3,5	;RP0=0, select bank0
+  1017  027A  1303               	bcf	3,6	;RP1=0, select bank0
+  1018  027B  00A4               	movwf	??_SetTime_Init
+  1019  027C  0824               	movf	??_SetTime_Init,w
+  1020  027D  1683               	bsf	3,5	;RP0=1, select bank1
+  1021  027E  1303               	bcf	3,6	;RP1=0, select bank1
+  1022  027F  0585               	andwf	5,f	;volatile
+  1023                           
+  1024                           ;../core/base/com_control/src/com_control.c: 27:  PORTA &= (~(1<<7));
+  1025  0280  307F               	movlw	127
+  1026  0281  1283               	bcf	3,5	;RP0=0, select bank0
+  1027  0282  1303               	bcf	3,6	;RP1=0, select bank0
+  1028  0283  00A4               	movwf	??_SetTime_Init
+  1029  0284  0824               	movf	??_SetTime_Init,w
+  1030  0285  0585               	andwf	5,f	;volatile
+  1031                           
+  1032                           ;../core/base/com_control/src/com_control.c: 32:  SetTimeHandler.System_Mode = (uint8_t)
+      +                          0X00;
+  1033  0286  30F3               	movlw	-13
+  1034  0287  05B3               	andwf	_SetTimeHandler,f
+  1035  0288  0008               	return
+  1036  0289                     __end_of_SetTime_Init:	
+  1037                           
+  1038                           	psect	text6
+  1039  0339                     __ptext6:	
+  1040 ;; *************** function _Seven_Seg_Enable *****************
+  1041 ;; Defined at:
+  1042 ;;		line 49 in file "../core/base/seven_seg/src/seven_seg.c"
+  1043 ;; Parameters:    Size  Location     Type
+  1044 ;;		None
+  1045 ;; Auto vars:     Size  Location     Type
+  1046 ;;		None
+  1047 ;; Return value:  Size  Location     Type
+  1048 ;;                  1    wreg      void 
+  1049 ;; Registers used:
+  1050 ;;		None
+  1051 ;; Tracked objects:
+  1052 ;;		On entry : 0/0
+  1053 ;;		On exit  : 0/0
+  1054 ;;		Unchanged: 0/0
+  1055 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1056 ;;      Params:         0       0       0       0
+  1057 ;;      Locals:         0       0       0       0
+  1058 ;;      Temps:          0       0       0       0
+  1059 ;;      Totals:         0       0       0       0
+  1060 ;;Total ram usage:        0 bytes
+  1061 ;; Hardware stack levels used:    1
+  1062 ;; Hardware stack levels required when called:    5
+  1063 ;; This function calls:
+  1064 ;;		Nothing
+  1065 ;; This function is called by:
+  1066 ;;		_main
+  1067 ;; This function uses a non-reentrant model
+  1068 ;;
+  1069                           
+  1070                           
+  1071                           ;psect for function _Seven_Seg_Enable
+  1072  0339                     _Seven_Seg_Enable:	
+  1073                           
+  1074                           ;../core/base/seven_seg/src/seven_seg.c: 51:     Segment_Handler.Segment_Enable = (uint8
+      +                          _t)1;
+  1075                           
+  1076                           ;incstack = 0
+  1077                           ; Regs used in _Seven_Seg_Enable: []
+  1078  0339  1283               	bcf	3,5	;RP0=0, select bank0
+  1079  033A  1303               	bcf	3,6	;RP1=0, select bank0
+  1080  033B  142F               	bsf	_Segment_Handler+1,0
+  1081  033C  0008               	return
+  1082  033D                     __end_of_Seven_Seg_Enable:	
+  1083                           
+  1084                           	psect	text7
+  1085  02DB                     __ptext7:	
+  1086 ;; *************** function _SetTime_Main *****************
+  1087 ;; Defined at:
+  1088 ;;		line 155 in file "../core/base/com_control/src/com_control.c"
+  1089 ;; Parameters:    Size  Location     Type
+  1090 ;;		None
+  1091 ;; Auto vars:     Size  Location     Type
+  1092 ;;		None
+  1093 ;; Return value:  Size  Location     Type
+  1094 ;;                  1    wreg      void 
+  1095 ;; Registers used:
+  1096 ;;		wreg, status,2, status,0, pclath, cstack
+  1097 ;; Tracked objects:
+  1098 ;;		On entry : 0/0
+  1099 ;;		On exit  : 0/0
+  1100 ;;		Unchanged: 0/0
+  1101 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1102 ;;      Params:         0       0       0       0
+  1103 ;;      Locals:         0       0       0       0
+  1104 ;;      Temps:          0       1       0       0
+  1105 ;;      Totals:         0       1       0       0
+  1106 ;;Total ram usage:        1 bytes
+  1107 ;; Hardware stack levels used:    1
+  1108 ;; Hardware stack levels required when called:    7
+  1109 ;; This function calls:
+  1110 ;;		_SetTime_For_Off
+  1111 ;;		_SetTime_For_On
+  1112 ;; This function is called by:
+  1113 ;;		_main
+  1114 ;; This function uses a non-reentrant model
+  1115 ;;
+  1116                           
+  1117                           
+  1118                           ;psect for function _SetTime_Main
+  1119  02DB                     _SetTime_Main:	
+  1120                           
+  1121                           ;../core/base/com_control/src/com_control.c: 157:  if (SetTimeHandler.System_Mode == (ui
+      +                          nt8_t)0X01)
+  1122                           
+  1123                           ;incstack = 0
+  1124                           ; Regs used in _SetTime_Main: [wreg+status,2+status,0+pclath+cstack]
+  1125  02DB  1283               	bcf	3,5	;RP0=0, select bank0
+  1126  02DC  1303               	bcf	3,6	;RP1=0, select bank0
+  1127  02DD  0C33               	rrf	_SetTimeHandler,w
+  1128  02DE  00AB               	movwf	??_SetTime_Main
+  1129  02DF  0C2B               	rrf	??_SetTime_Main,w
+  1130  02E0  3903               	andlw	3
+  1131  02E1  3A01               	xorlw	1
+  1132  02E2  1D03               	skipz
+  1133  02E3  0008               	return
+  1134                           
+  1135                           ;../core/base/com_control/src/com_control.c: 158:  {;../core/base/com_control/src/com_co
+      +                          ntrol.c: 159:   if (SetTimeHandler.KeyPressedFor_OnTime)
+  1136  02E4  1C33               	btfss	_SetTimeHandler,0
+  1137  02E5  2AE8               	goto	l229
+  1138                           
+  1139                           ;../core/base/com_control/src/com_control.c: 160:   {;../core/base/com_control/src/com_c
+      +                          ontrol.c: 161:    SetTime_For_On();
+  1140  02E6  2219               	fcall	_SetTime_For_On
+  1141                           
+  1142                           ;../core/base/com_control/src/com_control.c: 162:   }
+  1143  02E7  0008               	return
+  1144  02E8                     l229:	
+  1145                           ;../core/base/com_control/src/com_control.c: 164:   else if (SetTimeHandler.KeyPressedFo
+      +                          r_OffTime)
+  1146                           
+  1147  02E8  1CB3               	btfss	_SetTimeHandler,1
+  1148  02E9  0008               	return
+  1149                           
+  1150                           ;../core/base/com_control/src/com_control.c: 165:   {;../core/base/com_control/src/com_c
+      +                          ontrol.c: 166:    SetTime_For_Off();
+  1151  02EA  2237               	fcall	_SetTime_For_Off
+  1152  02EB  0008               	return
+  1153  02EC                     __end_of_SetTime_Main:	
+  1154                           
+  1155                           	psect	text8
+  1156  0219                     __ptext8:	
+  1157 ;; *************** function _SetTime_For_On *****************
+  1158 ;; Defined at:
+  1159 ;;		line 123 in file "../core/base/com_control/src/com_control.c"
+  1160 ;; Parameters:    Size  Location     Type
+  1161 ;;		None
+  1162 ;; Auto vars:     Size  Location     Type
+  1163 ;;		None
+  1164 ;; Return value:  Size  Location     Type
+  1165 ;;                  1    wreg      void 
+  1166 ;; Registers used:
+  1167 ;;		wreg, status,2, status,0, pclath, cstack
+  1168 ;; Tracked objects:
+  1169 ;;		On entry : 0/0
+  1170 ;;		On exit  : 0/0
+  1171 ;;		Unchanged: 0/0
+  1172 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1173 ;;      Params:         0       0       0       0
+  1174 ;;      Locals:         0       0       0       0
+  1175 ;;      Temps:          0       1       0       0
+  1176 ;;      Totals:         0       1       0       0
+  1177 ;;Total ram usage:        1 bytes
+  1178 ;; Hardware stack levels used:    1
+  1179 ;; Hardware stack levels required when called:    6
+  1180 ;; This function calls:
+  1181 ;;		_SetTime_Delay
+  1182 ;; This function is called by:
+  1183 ;;		_SetTime_Main
+  1184 ;; This function uses a non-reentrant model
+  1185 ;;
+  1186                           
+  1187                           
+  1188                           ;psect for function _SetTime_For_On
+  1189  0219                     _SetTime_For_On:	
+  1190                           
+  1191                           ;../core/base/com_control/src/com_control.c: 125:  Global_Delay = 1;
+  1192                           
+  1193                           ;incstack = 0
+  1194                           ; Regs used in _SetTime_For_On: [wreg+status,2+status,0+pclath+cstack]
+  1195  0219  3001               	movlw	1
+  1196  021A  1283               	bcf	3,5	;RP0=0, select bank0
+  1197  021B  1303               	bcf	3,6	;RP1=0, select bank0
+  1198  021C  00AC               	movwf	_Global_Delay
+  1199  021D  3000               	movlw	0
+  1200  021E  00AD               	movwf	_Global_Delay+1
+  1201                           
+  1202                           ;../core/base/com_control/src/com_control.c: 127:  Segment_Handler.Segment_Double = (uin
+      +                          t8_t)0;
+  1203  021F  13AE               	bcf	_Segment_Handler,7
+  1204  0220                     l1418:	
+  1205                           ;../core/base/com_control/src/com_control.c: 129:  while (SetTimeHandler.KeyPressedFor_O
+      +                          nTime)
+  1206                           
+  1207                           
+  1208                           ;../core/base/com_control/src/com_control.c: 129:  while (SetTimeHandler.KeyPressedFor_O
+      +                          nTime)
+  1209  0220  1283               	bcf	3,5	;RP0=0, select bank0
+  1210  0221  1303               	bcf	3,6	;RP1=0, select bank0
+  1211  0222  1C33               	btfss	_SetTimeHandler,0
+  1212  0223  2A2E               	goto	l1420
+  1213                           
+  1214                           ;../core/base/com_control/src/com_control.c: 130:  {;../core/base/com_control/src/com_co
+      +                          ntrol.c: 131:   Segment_Handler.Segment_Value = Global_Delay;
+  1215  0224  082E               	movf	_Segment_Handler,w
+  1216  0225  062C               	xorwf	_Global_Delay,w
+  1217  0226  3980               	andlw	-128
+  1218  0227  062C               	xorwf	_Global_Delay,w
+  1219  0228  00AE               	movwf	_Segment_Handler
+  1220                           
+  1221                           ;../core/base/com_control/src/com_control.c: 133:   SetTime_Delay ((uint8_t)9, 1);
+  1222  0229  01A4               	clrf	SetTime_Delay@Limit_Lwr
+  1223  022A  0AA4               	incf	SetTime_Delay@Limit_Lwr,f
+  1224  022B  3009               	movlw	9
+  1225  022C  2021               	fcall	_SetTime_Delay
+  1226  022D  2A20               	goto	l1418
+  1227  022E                     l1420:	
+  1228                           
+  1229                           ;../core/base/com_control/src/com_control.c: 136:  SetTimeHandler.System_OnTime = Global
+      +                          _Delay;
+  1230  022E  082C               	movf	_Global_Delay,w
+  1231  022F  00AA               	movwf	??_SetTime_For_On
+  1232  0230  0EAA               	swapf	??_SetTime_For_On,f
+  1233  0231  0833               	movf	_SetTimeHandler,w
+  1234  0232  062A               	xorwf	??_SetTime_For_On,w
+  1235  0233  390F               	andlw	-241
+  1236  0234  062A               	xorwf	??_SetTime_For_On,w
+  1237  0235  00B3               	movwf	_SetTimeHandler
+  1238  0236  0008               	return
+  1239  0237                     __end_of_SetTime_For_On:	
+  1240                           
+  1241                           	psect	text9
+  1242  0237                     __ptext9:	
+  1243 ;; *************** function _SetTime_For_Off *****************
+  1244 ;; Defined at:
+  1245 ;;		line 139 in file "../core/base/com_control/src/com_control.c"
+  1246 ;; Parameters:    Size  Location     Type
+  1247 ;;		None
+  1248 ;; Auto vars:     Size  Location     Type
+  1249 ;;		None
+  1250 ;; Return value:  Size  Location     Type
+  1251 ;;                  1    wreg      void 
+  1252 ;; Registers used:
+  1253 ;;		wreg, status,2, status,0, pclath, cstack
+  1254 ;; Tracked objects:
+  1255 ;;		On entry : 0/0
+  1256 ;;		On exit  : 0/0
+  1257 ;;		Unchanged: 0/0
+  1258 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1259 ;;      Params:         0       0       0       0
+  1260 ;;      Locals:         0       0       0       0
+  1261 ;;      Temps:          0       1       0       0
+  1262 ;;      Totals:         0       1       0       0
+  1263 ;;Total ram usage:        1 bytes
+  1264 ;; Hardware stack levels used:    1
+  1265 ;; Hardware stack levels required when called:    6
+  1266 ;; This function calls:
+  1267 ;;		_SetTime_Delay
+  1268 ;; This function is called by:
+  1269 ;;		_SetTime_Main
+  1270 ;; This function uses a non-reentrant model
+  1271 ;;
+  1272                           
+  1273                           
+  1274                           ;psect for function _SetTime_For_Off
+  1275  0237                     _SetTime_For_Off:	
+  1276                           
+  1277                           ;../core/base/com_control/src/com_control.c: 141:  Global_Delay = 1;
+  1278                           
+  1279                           ;incstack = 0
+  1280                           ; Regs used in _SetTime_For_Off: [wreg+status,2+status,0+pclath+cstack]
+  1281  0237  3001               	movlw	1
+  1282  0238  1283               	bcf	3,5	;RP0=0, select bank0
+  1283  0239  1303               	bcf	3,6	;RP1=0, select bank0
+  1284  023A  00AC               	movwf	_Global_Delay
+  1285  023B  3000               	movlw	0
+  1286  023C  00AD               	movwf	_Global_Delay+1
+  1287                           
+  1288                           ;../core/base/com_control/src/com_control.c: 143:  Segment_Handler.Segment_Double = (uin
+      +                          t8_t)1;
+  1289  023D  17AE               	bsf	_Segment_Handler,7
+  1290  023E                     l1430:	
+  1291                           ;../core/base/com_control/src/com_control.c: 145:  while (SetTimeHandler.KeyPressedFor_O
+      +                          ffTime)
+  1292                           
+  1293                           
+  1294                           ;../core/base/com_control/src/com_control.c: 145:  while (SetTimeHandler.KeyPressedFor_O
+      +                          ffTime)
+  1295  023E  1283               	bcf	3,5	;RP0=0, select bank0
+  1296  023F  1303               	bcf	3,6	;RP1=0, select bank0
+  1297  0240  1CB3               	btfss	_SetTimeHandler,1
+  1298  0241  2A4C               	goto	l1432
+  1299                           
+  1300                           ;../core/base/com_control/src/com_control.c: 146:  {;../core/base/com_control/src/com_co
+      +                          ntrol.c: 147:   Segment_Handler.Segment_Value = Global_Delay;
+  1301  0242  082E               	movf	_Segment_Handler,w
+  1302  0243  062C               	xorwf	_Global_Delay,w
+  1303  0244  3980               	andlw	-128
+  1304  0245  062C               	xorwf	_Global_Delay,w
+  1305  0246  00AE               	movwf	_Segment_Handler
+  1306                           
+  1307                           ;../core/base/com_control/src/com_control.c: 149:   SetTime_Delay ((uint8_t)99, 1);
+  1308  0247  01A4               	clrf	SetTime_Delay@Limit_Lwr
+  1309  0248  0AA4               	incf	SetTime_Delay@Limit_Lwr,f
+  1310  0249  3063               	movlw	99
+  1311  024A  2021               	fcall	_SetTime_Delay
+  1312  024B  2A3E               	goto	l1430
+  1313  024C                     l1432:	
+  1314                           
+  1315                           ;../core/base/com_control/src/com_control.c: 152:  SetTimeHandler.System_OnTime = Global
+      +                          _Delay;
+  1316  024C  082C               	movf	_Global_Delay,w
+  1317  024D  00AA               	movwf	??_SetTime_For_Off
+  1318  024E  0EAA               	swapf	??_SetTime_For_Off,f
+  1319  024F  0833               	movf	_SetTimeHandler,w
+  1320  0250  062A               	xorwf	??_SetTime_For_Off,w
+  1321  0251  390F               	andlw	-241
+  1322  0252  062A               	xorwf	??_SetTime_For_Off,w
+  1323  0253  00B3               	movwf	_SetTimeHandler
+  1324  0254  0008               	return
+  1325  0255                     __end_of_SetTime_For_Off:	
+  1326                           
+  1327                           	psect	text10
+  1328  0021                     __ptext10:	
+  1329 ;; *************** function _SetTime_Delay *****************
+  1330 ;; Defined at:
+  1331 ;;		line 88 in file "../core/base/com_control/src/com_control.c"
+  1332 ;; Parameters:    Size  Location     Type
+  1333 ;;  Limit_Upr       1    wreg     unsigned char 
+  1334 ;;  Limit_Lwr       1    4[BANK0 ] unsigned char 
+  1335 ;; Auto vars:     Size  Location     Type
+  1336 ;;  Limit_Upr       1    7[BANK0 ] unsigned char 
+  1337 ;;  temp            2    8[BANK0 ] unsigned int 
+  1338 ;; Return value:  Size  Location     Type
+  1339 ;;                  1    wreg      void 
+  1340 ;; Registers used:
+  1341 ;;		wreg, status,2
+  1342 ;; Tracked objects:
+  1343 ;;		On entry : 0/0
+  1344 ;;		On exit  : 0/0
+  1345 ;;		Unchanged: 0/0
+  1346 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1347 ;;      Params:         0       1       0       0
+  1348 ;;      Locals:         0       3       0       0
+  1349 ;;      Temps:          0       2       0       0
+  1350 ;;      Totals:         0       6       0       0
+  1351 ;;Total ram usage:        6 bytes
+  1352 ;; Hardware stack levels used:    1
+  1353 ;; Hardware stack levels required when called:    5
+  1354 ;; This function calls:
+  1355 ;;		Nothing
+  1356 ;; This function is called by:
+  1357 ;;		_SetTime_For_On
+  1358 ;;		_SetTime_For_Off
+  1359 ;; This function uses a non-reentrant model
+  1360 ;;
+  1361                           
+  1362                           
+  1363                           ;psect for function _SetTime_Delay
+  1364  0021                     _SetTime_Delay:	
+  1365                           
+  1366                           ;incstack = 0
+  1367                           ; Regs used in _SetTime_Delay: [wreg+status,2]
+  1368                           ;SetTime_Delay@Limit_Upr stored from wreg
+  1369  0021  1283               	bcf	3,5	;RP0=0, select bank0
+  1370  0022  1303               	bcf	3,6	;RP1=0, select bank0
+  1371  0023  00A7               	movwf	SetTime_Delay@Limit_Upr
+  1372                           
+  1373                           ;../core/base/com_control/src/com_control.c: 88: void SetTime_Delay(unsigned char Limit_
+      +                          Upr, unsigned char Limit_Lwr);../core/base/com_control/src/com_control.c: 89: {;../core/
+      +                          base/com_control/src/com_control.c: 90:  unsigned int temp = 0;
+  1374  0024  01A8               	clrf	SetTime_Delay@temp
+  1375  0025  01A9               	clrf	SetTime_Delay@temp+1
+  1376                           
+  1377                           ;../core/base/com_control/src/com_control.c: 92:  if (!RA3)
+  1378  0026  1D85               	btfss	5,3	;volatile
+  1379  0027  2836               	goto	l1352
+  1380  0028  2851               	goto	l198
+  1381  0029                     l1354:	
+  1382  0029  303A               	movlw	58
+  1383  002A  0229               	subwf	SetTime_Delay@temp+1,w
+  1384  002B  3098               	movlw	152
+  1385  002C  1903               	skipnz
+  1386  002D  0228               	subwf	SetTime_Delay@temp,w
+  1387  002E  1803               	btfsc	3,0
+  1388  002F  2838               	goto	l1356
+  1389                           
+  1390                           ;../core/base/com_control/src/com_control.c: 95:   {;../core/base/com_control/src/com_co
+      +                          ntrol.c: 96:    temp++;
+  1391  0030  3001               	movlw	1
+  1392  0031  07A8               	addwf	SetTime_Delay@temp,f
+  1393  0032  1803               	skipnc
+  1394  0033  0AA9               	incf	SetTime_Delay@temp+1,f
+  1395  0034  3000               	movlw	0
+  1396  0035  07A9               	addwf	SetTime_Delay@temp+1,f
+  1397  0036                     l1352:	
+  1398                           
+  1399                           ;../core/base/com_control/src/com_control.c: 94:   while ((!RA3) && (temp < 15000))
+  1400  0036  1D85               	btfss	5,3	;volatile
+  1401  0037  2829               	goto	l1354
+  1402  0038                     l1356:	
+  1403                           
+  1404                           ;../core/base/com_control/src/com_control.c: 99:   Global_Delay++;
+  1405  0038  3001               	movlw	1
+  1406  0039  07AC               	addwf	_Global_Delay,f
+  1407  003A  1803               	skipnc
+  1408  003B  0AAD               	incf	_Global_Delay+1,f
+  1409  003C  3000               	movlw	0
+  1410  003D  07AD               	addwf	_Global_Delay+1,f
+  1411                           
+  1412                           ;../core/base/com_control/src/com_control.c: 101:   if (Global_Delay > Limit_Upr)
+  1413  003E  0827               	movf	SetTime_Delay@Limit_Upr,w
+  1414  003F  00A5               	movwf	??_SetTime_Delay
+  1415  0040  01A6               	clrf	??_SetTime_Delay+1
+  1416  0041  082D               	movf	_Global_Delay+1,w
+  1417  0042  0226               	subwf	??_SetTime_Delay+1,w
+  1418  0043  1D03               	skipz
+  1419  0044  2847               	goto	u905
+  1420  0045  082C               	movf	_Global_Delay,w
+  1421  0046  0225               	subwf	??_SetTime_Delay,w
+  1422  0047                     u905:	
+  1423  0047  1803               	skipnc
+  1424  0048  0008               	return
+  1425                           
+  1426                           ;../core/base/com_control/src/com_control.c: 102:   {;../core/base/com_control/src/com_c
+      +                          ontrol.c: 103:             Global_Delay = Limit_Lwr;
+  1427  0049  0824               	movf	SetTime_Delay@Limit_Lwr,w
+  1428  004A  00A5               	movwf	??_SetTime_Delay
+  1429  004B  01A6               	clrf	??_SetTime_Delay+1
+  1430  004C  0825               	movf	??_SetTime_Delay,w
+  1431  004D  00AC               	movwf	_Global_Delay
+  1432  004E  0826               	movf	??_SetTime_Delay+1,w
+  1433  004F  00AD               	movwf	_Global_Delay+1
+  1434  0050  0008               	return
+  1435  0051                     l198:	
+  1436                           ;../core/base/com_control/src/com_control.c: 107:  else if (!RA4)
+  1437                           
+  1438  0051  1A05               	btfsc	5,4	;volatile
+  1439  0052  0008               	return
+  1440  0053  2861               	goto	l1364
+  1441  0054                     l1366:	
+  1442  0054  303A               	movlw	58
+  1443  0055  0229               	subwf	SetTime_Delay@temp+1,w
+  1444  0056  3098               	movlw	152
+  1445  0057  1903               	skipnz
+  1446  0058  0228               	subwf	SetTime_Delay@temp,w
+  1447  0059  1803               	btfsc	3,0
+  1448  005A  2863               	goto	l1368
+  1449                           
+  1450                           ;../core/base/com_control/src/com_control.c: 110:   {;../core/base/com_control/src/com_c
+      +                          ontrol.c: 111:    temp++;
+  1451  005B  3001               	movlw	1
+  1452  005C  07A8               	addwf	SetTime_Delay@temp,f
+  1453  005D  1803               	skipnc
+  1454  005E  0AA9               	incf	SetTime_Delay@temp+1,f
+  1455  005F  3000               	movlw	0
+  1456  0060  07A9               	addwf	SetTime_Delay@temp+1,f
+  1457  0061                     l1364:	
+  1458                           
+  1459                           ;../core/base/com_control/src/com_control.c: 109:   while ((!RA4) && (temp < 15000))
+  1460  0061  1E05               	btfss	5,4	;volatile
+  1461  0062  2854               	goto	l1366
+  1462  0063                     l1368:	
+  1463                           
+  1464                           ;../core/base/com_control/src/com_control.c: 114:   Global_Delay--;
+  1465  0063  3001               	movlw	1
+  1466  0064  02AC               	subwf	_Global_Delay,f
+  1467  0065  3000               	movlw	0
+  1468  0066  1C03               	skipc
+  1469  0067  03AD               	decf	_Global_Delay+1,f
+  1470  0068  02AD               	subwf	_Global_Delay+1,f
+  1471                           
+  1472                           ;../core/base/com_control/src/com_control.c: 116:   if (Global_Delay < Limit_Lwr)
+  1473  0069  0824               	movf	SetTime_Delay@Limit_Lwr,w
+  1474  006A  00A5               	movwf	??_SetTime_Delay
+  1475  006B  01A6               	clrf	??_SetTime_Delay+1
+  1476  006C  0826               	movf	??_SetTime_Delay+1,w
+  1477  006D  022D               	subwf	_Global_Delay+1,w
+  1478  006E  1D03               	skipz
+  1479  006F  2872               	goto	u945
+  1480  0070  0825               	movf	??_SetTime_Delay,w
+  1481  0071  022C               	subwf	_Global_Delay,w
+  1482  0072                     u945:	
+  1483  0072  1803               	skipnc
+  1484  0073  0008               	return
+  1485                           
+  1486                           ;../core/base/com_control/src/com_control.c: 117:   {;../core/base/com_control/src/com_c
+      +                          ontrol.c: 118:             Global_Delay = Limit_Upr;
+  1487  0074  0827               	movf	SetTime_Delay@Limit_Upr,w
+  1488  0075  00A5               	movwf	??_SetTime_Delay
+  1489  0076  01A6               	clrf	??_SetTime_Delay+1
+  1490  0077  0825               	movf	??_SetTime_Delay,w
+  1491  0078  00AC               	movwf	_Global_Delay
+  1492  0079  0826               	movf	??_SetTime_Delay+1,w
+  1493  007A  00AD               	movwf	_Global_Delay+1
+  1494  007B  0008               	return
+  1495  007C                     __end_of_SetTime_Delay:	
+  1496                           
+  1497                           	psect	text11
+  1498  030C                     __ptext11:	
+  1499 ;; *************** function _ComControl_Main *****************
+  1500 ;; Defined at:
+  1501 ;;		line 214 in file "../core/base/com_control/src/com_control.c"
+  1502 ;; Parameters:    Size  Location     Type
+  1503 ;;		None
+  1504 ;; Auto vars:     Size  Location     Type
+  1505 ;;		None
+  1506 ;; Return value:  Size  Location     Type
+  1507 ;;                  1    wreg      void 
+  1508 ;; Registers used:
+  1509 ;;		wreg, status,2, status,0, pclath, cstack
+  1510 ;; Tracked objects:
+  1511 ;;		On entry : 0/0
+  1512 ;;		On exit  : 0/0
+  1513 ;;		Unchanged: 0/0
+  1514 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1515 ;;      Params:         0       0       0       0
+  1516 ;;      Locals:         0       0       0       0
+  1517 ;;      Temps:          0       1       0       0
+  1518 ;;      Totals:         0       1       0       0
+  1519 ;;Total ram usage:        1 bytes
+  1520 ;; Hardware stack levels used:    1
+  1521 ;; Hardware stack levels required when called:    7
+  1522 ;; This function calls:
+  1523 ;;		_ComControl_OffTime
+  1524 ;;		_ComControl_OnTime
+  1525 ;; This function is called by:
+  1526 ;;		_main
+  1527 ;; This function uses a non-reentrant model
+  1528 ;;
+  1529                           
+  1530                           
+  1531                           ;psect for function _ComControl_Main
+  1532  030C                     _ComControl_Main:	
+  1533                           
+  1534                           ;../core/base/com_control/src/com_control.c: 216:  if (SetTimeHandler.System_Mode == (ui
+      +                          nt8_t)0X02)
+  1535                           
+  1536                           ;incstack = 0
+  1537                           ; Regs used in _ComControl_Main: [wreg+status,2+status,0+pclath+cstack]
+  1538  030C  1283               	bcf	3,5	;RP0=0, select bank0
+  1539  030D  1303               	bcf	3,6	;RP1=0, select bank0
+  1540  030E  0C33               	rrf	_SetTimeHandler,w
+  1541  030F  00AA               	movwf	??_ComControl_Main
+  1542  0310  0C2A               	rrf	??_ComControl_Main,w
+  1543  0311  3903               	andlw	3
+  1544  0312  3A02               	xorlw	2
+  1545  0313  1D03               	skipz
+  1546  0314  0008               	return
+  1547                           
+  1548                           ;../core/base/com_control/src/com_control.c: 217:  {;../core/base/com_control/src/com_co
+      +                          ntrol.c: 218:   ComControl_OnTime();
+  1549  0315  2255               	fcall	_ComControl_OnTime
+  1550                           
+  1551                           ;../core/base/com_control/src/com_control.c: 220:   ComControl_OffTime();
+  1552  0316  21FA               	fcall	_ComControl_OffTime
+  1553  0317  0008               	return
+  1554  0318                     __end_of_ComControl_Main:	
+  1555                           
+  1556                           	psect	text12
+  1557  0255                     __ptext12:	
+  1558 ;; *************** function _ComControl_OnTime *****************
+  1559 ;; Defined at:
+  1560 ;;		line 171 in file "../core/base/com_control/src/com_control.c"
+  1561 ;; Parameters:    Size  Location     Type
+  1562 ;;		None
+  1563 ;; Auto vars:     Size  Location     Type
+  1564 ;;		None
+  1565 ;; Return value:  Size  Location     Type
+  1566 ;;                  1    wreg      void 
+  1567 ;; Registers used:
+  1568 ;;		wreg, status,2, status,0
+  1569 ;; Tracked objects:
+  1570 ;;		On entry : 0/0
+  1571 ;;		On exit  : 0/0
+  1572 ;;		Unchanged: 0/0
+  1573 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1574 ;;      Params:         0       0       0       0
+  1575 ;;      Locals:         0       0       0       0
+  1576 ;;      Temps:          0       1       0       0
+  1577 ;;      Totals:         0       1       0       0
+  1578 ;;Total ram usage:        1 bytes
+  1579 ;; Hardware stack levels used:    1
+  1580 ;; Hardware stack levels required when called:    5
+  1581 ;; This function calls:
+  1582 ;;		Nothing
+  1583 ;; This function is called by:
+  1584 ;;		_ComControl_Main
+  1585 ;; This function uses a non-reentrant model
+  1586 ;;
+  1587                           
+  1588                           
+  1589                           ;psect for function _ComControl_OnTime
+  1590  0255                     _ComControl_OnTime:	
+  1591                           
+  1592                           ;../core/base/com_control/src/com_control.c: 173:  System_Time_Shadow = SetTimeHandler.S
+      +                          ystem_OnTime;
+  1593                           
+  1594                           ;incstack = 0
+  1595                           ; Regs used in _ComControl_OnTime: [wreg+status,2+status,0]
+  1596  0255  1283               	bcf	3,5	;RP0=0, select bank0
+  1597  0256  1303               	bcf	3,6	;RP1=0, select bank0
+  1598  0257  0E33               	swapf	_SetTimeHandler,w
+  1599  0258  390F               	andlw	15
+  1600  0259  00A4               	movwf	??_ComControl_OnTime
+  1601  025A  0824               	movf	??_ComControl_OnTime,w
+  1602  025B  00B2               	movwf	_System_Time_Shadow
+  1603                           
+  1604                           ;../core/base/com_control/src/com_control.c: 176:  RA7 = (uint8_t)1;
+  1605  025C  1785               	bsf	5,7	;volatile
+  1606                           
+  1607                           ;../core/base/com_control/src/com_control.c: 179:  Segment_Handler.Segment_Double = (uin
+      +                          t8_t)0;
+  1608  025D  13AE               	bcf	_Segment_Handler,7
+  1609                           
+  1610                           ;../core/base/com_control/src/com_control.c: 181:     while ((System_Time_Shadow > 0) &&
+      +                           (SetTimeHandler.System_Mode == (uint8_t)0X02))
+  1611  025E  2A6B               	goto	l235
+  1612  025F                     l1442:	
+  1613  025F  0C33               	rrf	_SetTimeHandler,w
+  1614  0260  00A4               	movwf	??_ComControl_OnTime
+  1615  0261  0C24               	rrf	??_ComControl_OnTime,w
+  1616  0262  3903               	andlw	3
+  1617  0263  3A02               	xorlw	2
+  1618  0264  1D03               	btfss	3,2
+  1619  0265  2A6E               	goto	l239
+  1620                           
+  1621                           ;../core/base/com_control/src/com_control.c: 182:  {;../core/base/com_control/src/com_co
+      +                          ntrol.c: 183:   Segment_Handler.Segment_Value = System_Time_Shadow;
+  1622  0266  082E               	movf	_Segment_Handler,w
+  1623  0267  0632               	xorwf	_System_Time_Shadow,w
+  1624  0268  3980               	andlw	-128
+  1625  0269  0632               	xorwf	_System_Time_Shadow,w
+  1626  026A  00AE               	movwf	_Segment_Handler
+  1627  026B                     l235:	
+  1628                           ;../core/base/com_control/src/com_control.c: 184:  }
+  1629                           
+  1630                           
+  1631                           ;../core/base/com_control/src/com_control.c: 181:     while ((System_Time_Shadow > 0) &&
+      +                           (SetTimeHandler.System_Mode == (uint8_t)0X02))
+  1632  026B  0832               	movf	_System_Time_Shadow,w
+  1633  026C  1D03               	btfss	3,2
+  1634  026D  2A5F               	goto	l1442
+  1635  026E                     l239:	
+  1636                           
+  1637                           ;../core/base/com_control/src/com_control.c: 187:  RA7 = (uint8_t)0;
+  1638  026E  1385               	bcf	5,7	;volatile
+  1639  026F  0008               	return
+  1640  0270                     __end_of_ComControl_OnTime:	
+  1641                           
+  1642                           	psect	text13
+  1643  01FA                     __ptext13:	
+  1644 ;; *************** function _ComControl_OffTime *****************
+  1645 ;; Defined at:
+  1646 ;;		line 190 in file "../core/base/com_control/src/com_control.c"
+  1647 ;; Parameters:    Size  Location     Type
+  1648 ;;		None
+  1649 ;; Auto vars:     Size  Location     Type
+  1650 ;;		None
+  1651 ;; Return value:  Size  Location     Type
+  1652 ;;                  1    wreg      void 
+  1653 ;; Registers used:
+  1654 ;;		wreg, status,2, status,0, pclath, cstack
+  1655 ;; Tracked objects:
+  1656 ;;		On entry : 0/0
+  1657 ;;		On exit  : 0/0
+  1658 ;;		Unchanged: 0/0
+  1659 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1660 ;;      Params:         0       0       0       0
+  1661 ;;      Locals:         0       0       0       0
+  1662 ;;      Temps:          0       2       0       0
+  1663 ;;      Totals:         0       2       0       0
+  1664 ;;Total ram usage:        2 bytes
+  1665 ;; Hardware stack levels used:    1
+  1666 ;; Hardware stack levels required when called:    6
+  1667 ;; This function calls:
+  1668 ;;		___bmul
+  1669 ;; This function is called by:
+  1670 ;;		_ComControl_Main
+  1671 ;; This function uses a non-reentrant model
+  1672 ;;
+  1673                           
+  1674                           
+  1675                           ;psect for function _ComControl_OffTime
+  1676  01FA                     _ComControl_OffTime:	
+  1677                           
+  1678                           ;../core/base/com_control/src/com_control.c: 192:  System_Time_Shadow = SetTimeHandler.S
+      +                          ystem_OffTime * 60;
+  1679                           
+  1680                           ;incstack = 0
+  1681                           ; Regs used in _ComControl_OffTime: [wreg+status,2+status,0+pclath+cstack]
+  1682  01FA  303C               	movlw	60
+  1683  01FB  1283               	bcf	3,5	;RP0=0, select bank0
+  1684  01FC  1303               	bcf	3,6	;RP1=0, select bank0
+  1685  01FD  00A8               	movwf	??_ComControl_OffTime
+  1686  01FE  0828               	movf	??_ComControl_OffTime,w
+  1687  01FF  00A4               	movwf	___bmul@multiplicand
+  1688  0200  0834               	movf	_SetTimeHandler+1,w
+  1689  0201  22C8               	fcall	___bmul
+  1690  0202  1283               	bcf	3,5	;RP0=0, select bank0
+  1691  0203  1303               	bcf	3,6	;RP1=0, select bank0
+  1692  0204  00A9               	movwf	??_ComControl_OffTime+1
+  1693  0205  0829               	movf	??_ComControl_OffTime+1,w
+  1694  0206  00B2               	movwf	_System_Time_Shadow
+  1695                           
+  1696                           ;../core/base/com_control/src/com_control.c: 195:  RA7 = (uint8_t)0;
+  1697  0207  1385               	bcf	5,7	;volatile
+  1698                           
+  1699                           ;../core/base/com_control/src/com_control.c: 198:  Segment_Handler.Segment_Double = (uin
+      +                          t8_t)1;
+  1700  0208  17AE               	bsf	_Segment_Handler,7
+  1701  0209                     l243:	
+  1702                           ;../core/base/com_control/src/com_control.c: 203:  }
+  1703                           
+  1704                           ;../core/base/com_control/src/com_control.c: 200:  while ((System_Time_Shadow > 0) && (S
+      +                          etTimeHandler.System_Mode == (uint8_t)0X02))
+  1705                           
+  1706                           
+  1707                           ;../core/base/com_control/src/com_control.c: 200:  while ((System_Time_Shadow > 0) && (S
+      +                          etTimeHandler.System_Mode == (uint8_t)0X02))
+  1708  0209  0832               	movf	_System_Time_Shadow,w
+  1709  020A  1903               	btfsc	3,2
+  1710  020B  0008               	return
+  1711  020C  0C33               	rrf	_SetTimeHandler,w
+  1712  020D  00A8               	movwf	??_ComControl_OffTime
+  1713  020E  0C28               	rrf	??_ComControl_OffTime,w
+  1714  020F  3903               	andlw	3
+  1715  0210  3A02               	xorlw	2
+  1716  0211  1D03               	btfss	3,2
+  1717  0212  0008               	return
+  1718                           
+  1719                           ;../core/base/com_control/src/com_control.c: 201:  {;../core/base/com_control/src/com_co
+      +                          ntrol.c: 202:   Segment_Handler.Segment_Value = System_Time_Shadow;
+  1720  0213  082E               	movf	_Segment_Handler,w
+  1721  0214  0632               	xorwf	_System_Time_Shadow,w
+  1722  0215  3980               	andlw	-128
+  1723  0216  0632               	xorwf	_System_Time_Shadow,w
+  1724  0217  00AE               	movwf	_Segment_Handler
+  1725  0218  2A09               	goto	l243
+  1726  0219                     __end_of_ComControl_OffTime:	
+  1727                           
+  1728                           	psect	text14
+  1729  02C8                     __ptext14:	
+  1730 ;; *************** function ___bmul *****************
+  1731 ;; Defined at:
+  1732 ;;		line 4 in file "C:\Program Files\Microchip\xc8\v2.05\pic\sources\c90\common\Umul8.c"
+  1733 ;; Parameters:    Size  Location     Type
+  1734 ;;  multiplier      1    wreg     unsigned char 
+  1735 ;;  multiplicand    1    4[BANK0 ] unsigned char 
+  1736 ;; Auto vars:     Size  Location     Type
+  1737 ;;  multiplier      1    7[BANK0 ] unsigned char 
+  1738 ;;  product         1    6[BANK0 ] unsigned char 
+  1739 ;; Return value:  Size  Location     Type
+  1740 ;;                  1    wreg      unsigned char 
+  1741 ;; Registers used:
+  1742 ;;		wreg, status,2, status,0
+  1743 ;; Tracked objects:
+  1744 ;;		On entry : 0/0
+  1745 ;;		On exit  : 0/0
+  1746 ;;		Unchanged: 0/0
+  1747 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1748 ;;      Params:         0       1       0       0
+  1749 ;;      Locals:         0       2       0       0
+  1750 ;;      Temps:          0       1       0       0
+  1751 ;;      Totals:         0       4       0       0
+  1752 ;;Total ram usage:        4 bytes
+  1753 ;; Hardware stack levels used:    1
+  1754 ;; Hardware stack levels required when called:    5
+  1755 ;; This function calls:
+  1756 ;;		Nothing
+  1757 ;; This function is called by:
+  1758 ;;		_ComControl_OffTime
+  1759 ;; This function uses a non-reentrant model
+  1760 ;;
+  1761                           
+  1762                           
+  1763                           ;psect for function ___bmul
+  1764  02C8                     ___bmul:	
+  1765                           
+  1766                           ;incstack = 0
+  1767                           ; Regs used in ___bmul: [wreg+status,2+status,0]
+  1768                           ;___bmul@multiplier stored from wreg
+  1769  02C8  1283               	bcf	3,5	;RP0=0, select bank0
+  1770  02C9  1303               	bcf	3,6	;RP1=0, select bank0
+  1771  02CA  00A7               	movwf	___bmul@multiplier
+  1772  02CB  01A6               	clrf	___bmul@product
+  1773  02CC                     l1374:	
+  1774  02CC  1C27               	btfss	___bmul@multiplier,0
+  1775  02CD  2AD2               	goto	l1378
+  1776  02CE  0824               	movf	___bmul@multiplicand,w
+  1777  02CF  00A5               	movwf	??___bmul
+  1778  02D0  0825               	movf	??___bmul,w
+  1779  02D1  07A6               	addwf	___bmul@product,f
+  1780  02D2                     l1378:	
+  1781  02D2  1003               	clrc
+  1782  02D3  0DA4               	rlf	___bmul@multiplicand,f
+  1783  02D4  1003               	clrc
+  1784  02D5  0CA7               	rrf	___bmul@multiplier,f
+  1785  02D6  0827               	movf	___bmul@multiplier,w
+  1786  02D7  1D03               	btfss	3,2
+  1787  02D8  2ACC               	goto	l1374
+  1788  02D9  0826               	movf	___bmul@product,w
+  1789  02DA  0008               	return
+  1790  02DB                     __end_of___bmul:	
+  1791                           
+  1792                           	psect	text15
+  1793  02A1                     __ptext15:	
+  1794 ;; *************** function _ISR *****************
+  1795 ;; Defined at:
+  1796 ;;		line 27 in file "../src/src.c"
+  1797 ;; Parameters:    Size  Location     Type
+  1798 ;;		None
+  1799 ;; Auto vars:     Size  Location     Type
+  1800 ;;		None
+  1801 ;; Return value:  Size  Location     Type
+  1802 ;;                  1    wreg      void 
+  1803 ;; Registers used:
+  1804 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1805 ;; Tracked objects:
+  1806 ;;		On entry : 0/0
+  1807 ;;		On exit  : 0/0
+  1808 ;;		Unchanged: 0/0
+  1809 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1810 ;;      Params:         0       0       0       0
+  1811 ;;      Locals:         0       0       0       0
+  1812 ;;      Temps:          0       4       0       0
+  1813 ;;      Totals:         0       4       0       0
+  1814 ;;Total ram usage:        4 bytes
+  1815 ;; Hardware stack levels used:    1
+  1816 ;; Hardware stack levels required when called:    4
+  1817 ;; This function calls:
+  1818 ;;		_SysOs_Task_Eval
+  1819 ;;		_SysOs_Task_Exe
+  1820 ;; This function is called by:
+  1821 ;;		Interrupt level 1
+  1822 ;; This function uses a non-reentrant model
+  1823 ;;
+  1824                           
+  1825                           
+  1826                           ;psect for function _ISR
+  1827  02A1                     _ISR:	
+  1828                           
+  1829                           ;../src/src.c: 29:     }
+  1830  02A1  1D0B               	btfss	11,2	;volatile
+  1831  02A2  2AA8               	goto	i1l65
+  1832                           
+  1833                           ;../src/src.c: 30: }
+  1834  02A3  110B               	bcf	11,2	;volatile
+  1835  02A4  3064               	movlw	100
+  1836  02A5  0081               	movwf	1	;volatile
+  1837  02A6  217B               	fcall	_SysOs_Task_Eval
+  1838  02A7  22FC               	fcall	_SysOs_Task_Exe
+  1839  02A8                     i1l65:	
+  1840  02A8  1283               	bcf	3,5	;RP0=0, select bank0
+  1841  02A9  1303               	bcf	3,6	;RP1=0, select bank0
+  1842  02AA  0823               	movf	??_ISR+3,w
+  1843  02AB  00FF               	movwf	127
+  1844  02AC  0822               	movf	??_ISR+2,w
+  1845  02AD  008A               	movwf	10
+  1846  02AE  0821               	movf	??_ISR+1,w
+  1847  02AF  0084               	movwf	4
+  1848  02B0  0E20               	swapf	??_ISR^0,w
+  1849  02B1  0083               	movwf	3
+  1850  02B2  0EFE               	swapf	126,f
+  1851  02B3  0E7E               	swapf	126,w
+  1852  02B4  0009               	retfie
+  1853  02B5                     __end_of_ISR:	
+  1854                           
+  1855                           	psect	intentry
+  1856  0004                     __pintentry:	
+  1857                           ;incstack = 0
+  1858                           ; Regs used in _ISR: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1859                           
+  1860  0004                     interrupt_function:	
+  1861  007E                     saved_w	set	btemp
+  1862  0004  00FE               	movwf	btemp
+  1863  0005  0E03               	swapf	3,w
+  1864  0006  1283               	bcf	3,5	;RP0=0, select bank0
+  1865  0007  1303               	bcf	3,6	;RP1=0, select bank0
+  1866  0008  00A0               	movwf	??_ISR
+  1867  0009  0804               	movf	4,w
+  1868  000A  00A1               	movwf	??_ISR+1
+  1869  000B  080A               	movf	10,w
+  1870  000C  00A2               	movwf	??_ISR+2
+  1871  000D  087F               	movf	btemp+1,w
+  1872  000E  00A3               	movwf	??_ISR+3
+  1873  000F  2AA1               	ljmp	_ISR
+  1874                           
+  1875                           	psect	text16
+  1876  02FC                     __ptext16:	
+  1877 ;; *************** function _SysOs_Task_Exe *****************
+  1878 ;; Defined at:
+  1879 ;;		line 73 in file "../core/sysos/src/sys_os.c"
+  1880 ;; Parameters:    Size  Location     Type
+  1881 ;;		None
+  1882 ;; Auto vars:     Size  Location     Type
+  1883 ;;		None
+  1884 ;; Return value:  Size  Location     Type
+  1885 ;;                  1    wreg      void 
+  1886 ;; Registers used:
+  1887 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1888 ;; Tracked objects:
+  1889 ;;		On entry : 0/0
+  1890 ;;		On exit  : 0/0
+  1891 ;;		Unchanged: 0/0
+  1892 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1893 ;;      Params:         0       0       0       0
+  1894 ;;      Locals:         0       0       0       0
+  1895 ;;      Temps:          0       0       0       0
+  1896 ;;      Totals:         0       0       0       0
+  1897 ;;Total ram usage:        0 bytes
+  1898 ;; Hardware stack levels used:    1
+  1899 ;; Hardware stack levels required when called:    3
+  1900 ;; This function calls:
+  1901 ;;		_xTask_1000ms
+  1902 ;;		_xTask_100ms
+  1903 ;;		_xTask_10ms
+  1904 ;;		_xTask_20ms
+  1905 ;;		_xTask_50ms
+  1906 ;; This function is called by:
+  1907 ;;		_ISR
+  1908 ;; This function uses a non-reentrant model
+  1909 ;;
+  1910                           
+  1911                           
+  1912                           ;psect for function _SysOs_Task_Exe
+  1913  02FC                     _SysOs_Task_Exe:	
+  1914                           
+  1915                           ;../core/sysos/src/sys_os.c: 75:     if (SysOs_Handle.Task_x10_Stat)
+  1916                           
+  1917                           ;incstack = 0
+  1918                           ; Regs used in _SysOs_Task_Exe: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1919  02FC  1C7C               	btfss	_SysOs_Handle,0
+  1920  02FD  2AFF               	goto	i1l1476
+  1921                           
+  1922                           ;../core/sysos/src/sys_os.c: 76:     {;../core/sysos/src/sys_os.c: 77:         xTask_10m
+      +                          s();
+  1923  02FE  233D               	fcall	_xTask_10ms
+  1924  02FF                     i1l1476:	
+  1925                           
+  1926                           ;../core/sysos/src/sys_os.c: 80:     if (SysOs_Handle.Task2_x20_Stat)
+  1927  02FF  1CFC               	btfss	_SysOs_Handle,1
+  1928  0300  2B02               	goto	i1l1480
+  1929                           
+  1930                           ;../core/sysos/src/sys_os.c: 81:     {;../core/sysos/src/sys_os.c: 82:         xTask_20m
+      +                          s();
+  1931  0301  2346               	fcall	_xTask_20ms
+  1932  0302                     i1l1480:	
+  1933                           
+  1934                           ;../core/sysos/src/sys_os.c: 85:     if (SysOs_Handle.Task3_x50_Stat)
+  1935  0302  1D7C               	btfss	_SysOs_Handle,2
+  1936  0303  2B05               	goto	i1l1484
+  1937                           
+  1938                           ;../core/sysos/src/sys_os.c: 86:     {;../core/sysos/src/sys_os.c: 87:         xTask_50m
+      +                          s();
+  1939  0304  2345               	fcall	_xTask_50ms
+  1940  0305                     i1l1484:	
+  1941                           
+  1942                           ;../core/sysos/src/sys_os.c: 90:     if (SysOs_Handle.Task4_x100_Stat)
+  1943  0305  1DFC               	btfss	_SysOs_Handle,3
+  1944  0306  2B08               	goto	i1l1488
+  1945                           
+  1946                           ;../core/sysos/src/sys_os.c: 91:     {;../core/sysos/src/sys_os.c: 92:         xTask_100
+      +                          ms();
+  1947  0307  233F               	fcall	_xTask_100ms
+  1948  0308                     i1l1488:	
+  1949                           
+  1950                           ;../core/sysos/src/sys_os.c: 95:     if (SysOs_Handle.Task4_x1000_Stat)
+  1951  0308  1E7C               	btfss	_SysOs_Handle,4
+  1952  0309  0008               	return
+  1953                           
+  1954                           ;../core/sysos/src/sys_os.c: 96:     {;../core/sysos/src/sys_os.c: 97:         xTask_100
+      +                          0ms();
+  1955  030A  2341               	fcall	_xTask_1000ms
+  1956  030B  0008               	return
+  1957  030C                     __end_of_SysOs_Task_Exe:	
+  1958                           
+  1959                           	psect	text17
+  1960  0345                     __ptext17:	
+  1961 ;; *************** function _xTask_50ms *****************
+  1962 ;; Defined at:
+  1963 ;;		line 58 in file "../core/sysos/src/sys_os.c"
+  1964 ;; Parameters:    Size  Location     Type
+  1965 ;;		None
+  1966 ;; Auto vars:     Size  Location     Type
+  1967 ;;		None
+  1968 ;; Return value:  Size  Location     Type
+  1969 ;;                  1    wreg      void 
+  1970 ;; Registers used:
+  1971 ;;		None
+  1972 ;; Tracked objects:
+  1973 ;;		On entry : 0/0
+  1974 ;;		On exit  : 0/0
+  1975 ;;		Unchanged: 0/0
+  1976 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1977 ;;      Params:         0       0       0       0
+  1978 ;;      Locals:         0       0       0       0
+  1979 ;;      Temps:          0       0       0       0
+  1980 ;;      Totals:         0       0       0       0
+  1981 ;;Total ram usage:        0 bytes
+  1982 ;; Hardware stack levels used:    1
+  1983 ;; This function calls:
+  1984 ;;		Nothing
+  1985 ;; This function is called by:
+  1986 ;;		_SysOs_Task_Exe
+  1987 ;; This function uses a non-reentrant model
+  1988 ;;
+  1989                           
+  1990                           
+  1991                           ;psect for function _xTask_50ms
+  1992  0345                     _xTask_50ms:	
+  1993                           
+  1994                           ;incstack = 0
+  1995                           ; Regs used in _xTask_50ms: []
+  1996  0345  0008               	return
+  1997  0346                     __end_of_xTask_50ms:	
+  1998                           
+  1999                           	psect	text18
+  2000  0346                     __ptext18:	
+  2001 ;; *************** function _xTask_20ms *****************
+  2002 ;; Defined at:
+  2003 ;;		line 53 in file "../core/sysos/src/sys_os.c"
+  2004 ;; Parameters:    Size  Location     Type
+  2005 ;;		None
+  2006 ;; Auto vars:     Size  Location     Type
+  2007 ;;		None
+  2008 ;; Return value:  Size  Location     Type
+  2009 ;;                  1    wreg      void 
+  2010 ;; Registers used:
+  2011 ;;		None
+  2012 ;; Tracked objects:
+  2013 ;;		On entry : 0/0
+  2014 ;;		On exit  : 0/0
+  2015 ;;		Unchanged: 0/0
+  2016 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2017 ;;      Params:         0       0       0       0
+  2018 ;;      Locals:         0       0       0       0
+  2019 ;;      Temps:          0       0       0       0
+  2020 ;;      Totals:         0       0       0       0
+  2021 ;;Total ram usage:        0 bytes
+  2022 ;; Hardware stack levels used:    1
+  2023 ;; This function calls:
+  2024 ;;		Nothing
+  2025 ;; This function is called by:
+  2026 ;;		_SysOs_Task_Exe
+  2027 ;; This function uses a non-reentrant model
+  2028 ;;
+  2029                           
+  2030                           
+  2031                           ;psect for function _xTask_20ms
+  2032  0346                     _xTask_20ms:	
+  2033                           
+  2034                           ;incstack = 0
+  2035                           ; Regs used in _xTask_20ms: []
+  2036  0346  0008               	return
+  2037  0347                     __end_of_xTask_20ms:	
+  2038                           
+  2039                           	psect	text19
+  2040  033D                     __ptext19:	
+  2041 ;; *************** function _xTask_10ms *****************
+  2042 ;; Defined at:
+  2043 ;;		line 48 in file "../core/sysos/src/sys_os.c"
+  2044 ;; Parameters:    Size  Location     Type
+  2045 ;;		None
+  2046 ;; Auto vars:     Size  Location     Type
+  2047 ;;		None
+  2048 ;; Return value:  Size  Location     Type
+  2049 ;;                  1    wreg      void 
+  2050 ;; Registers used:
+  2051 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  2052 ;; Tracked objects:
+  2053 ;;		On entry : 0/0
+  2054 ;;		On exit  : 0/0
+  2055 ;;		Unchanged: 0/0
+  2056 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2057 ;;      Params:         0       0       0       0
+  2058 ;;      Locals:         0       0       0       0
+  2059 ;;      Temps:          0       0       0       0
+  2060 ;;      Totals:         0       0       0       0
+  2061 ;;Total ram usage:        0 bytes
+  2062 ;; Hardware stack levels used:    1
+  2063 ;; Hardware stack levels required when called:    2
+  2064 ;; This function calls:
+  2065 ;;		_Seven_Seg_Display
+  2066 ;; This function is called by:
+  2067 ;;		_SysOs_Task_Exe
+  2068 ;; This function uses a non-reentrant model
+  2069 ;;
+  2070                           
+  2071                           
+  2072                           ;psect for function _xTask_10ms
+  2073  033D                     _xTask_10ms:	
+  2074                           
+  2075                           ;../core/sysos/src/sys_os.c: 50:     Seven_Seg_Display();
+  2076                           
+  2077                           ;incstack = 0
+  2078                           ; Regs used in _xTask_10ms: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  2079  033D  207C               	fcall	_Seven_Seg_Display
+  2080  033E  0008               	return
+  2081  033F                     __end_of_xTask_10ms:	
+  2082                           
+  2083                           	psect	text20
+  2084  007C                     __ptext20:	
+  2085 ;; *************** function _Seven_Seg_Display *****************
+  2086 ;; Defined at:
+  2087 ;;		line 8 in file "../core/base/seven_seg/src/seven_seg.c"
+  2088 ;; Parameters:    Size  Location     Type
+  2089 ;;		None
+  2090 ;; Auto vars:     Size  Location     Type
+  2091 ;;		None
+  2092 ;; Return value:  Size  Location     Type
+  2093 ;;                  1    wreg      void 
+  2094 ;; Registers used:
+  2095 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  2096 ;; Tracked objects:
+  2097 ;;		On entry : 0/0
+  2098 ;;		On exit  : 0/0
+  2099 ;;		Unchanged: 0/0
+  2100 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2101 ;;      Params:         0       0       0       0
+  2102 ;;      Locals:         0       0       0       0
+  2103 ;;      Temps:          3       0       0       0
+  2104 ;;      Totals:         3       0       0       0
+  2105 ;;Total ram usage:        3 bytes
+  2106 ;; Hardware stack levels used:    1
+  2107 ;; Hardware stack levels required when called:    1
+  2108 ;; This function calls:
+  2109 ;;		___awdiv
+  2110 ;;		___awmod
+  2111 ;; This function is called by:
+  2112 ;;		_xTask_10ms
+  2113 ;; This function uses a non-reentrant model
+  2114 ;;
+  2115                           
+  2116                           
+  2117                           ;psect for function _Seven_Seg_Display
+  2118  007C                     _Seven_Seg_Display:	
+  2119                           
+  2120                           ;../core/base/seven_seg/src/seven_seg.c: 10:     static unsigned char Toggle_Seg = (uint
+      +                          8_t)1;;../core/base/seven_seg/src/seven_seg.c: 12:     if (!Segment_Handler.Segment_Enab
+      +                          le)
+  2121                           
+  2122                           ;incstack = 0
+  2123 ;; using string table level
+  2124                           ; Regs used in _Seven_Seg_Display: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  2125  007C  1283               	bcf	3,5	;RP0=0, select bank0
+  2126  007D  1303               	bcf	3,6	;RP1=0, select bank0
+  2127  007E  1C2F               	btfss	_Segment_Handler+1,0
+  2128  007F  0008               	return
+  2129                           
+  2130                           ;../core/base/seven_seg/src/seven_seg.c: 17:     else if (Segment_Handler.Segment_Double
+      +                          )
+  2131  0080  1FAE               	btfss	_Segment_Handler,7
+  2132  0081  28BA               	goto	i1l26
+  2133                           
+  2134                           ;../core/base/seven_seg/src/seven_seg.c: 18:     {;../core/base/seven_seg/src/seven_seg.
+      +                          c: 19:         if (Toggle_Seg)
+  2135  0082  0835               	movf	Seven_Seg_Display@Toggle_Seg,w
+  2136  0083  1903               	btfsc	3,2
+  2137  0084  289F               	goto	i1l27
+  2138                           
+  2139                           ;../core/base/seven_seg/src/seven_seg.c: 20:         {;../core/base/seven_seg/src/seven_
+      +                          seg.c: 21:             RA0 = (uint8_t)1;
+  2140  0085  1405               	bsf	5,0	;volatile
+  2141                           
+  2142                           ;../core/base/seven_seg/src/seven_seg.c: 22:             RA1 = (uint8_t)0;
+  2143  0086  1085               	bcf	5,1	;volatile
+  2144                           
+  2145                           ;../core/base/seven_seg/src/seven_seg.c: 24:             PORTB = (Digits[Segment_Handler
+      +                          .Segment_Value/10]) << 1;
+  2146  0087  300A               	movlw	10
+  2147  0088  00F0               	movwf	___awdiv@divisor
+  2148  0089  3000               	movlw	0
+  2149  008A  00F1               	movwf	___awdiv@divisor+1
+  2150  008B  082E               	movf	_Segment_Handler,w
+  2151  008C  397F               	andlw	127
+  2152  008D  00F9               	movwf	??_Seven_Seg_Display
+  2153  008E  01FA               	clrf	??_Seven_Seg_Display+1
+  2154  008F  0879               	movf	??_Seven_Seg_Display,w
+  2155  0090  00F2               	movwf	___awdiv@dividend
+  2156  0091  087A               	movf	??_Seven_Seg_Display+1,w
+  2157  0092  00F3               	movwf	___awdiv@dividend+1
+  2158  0093  20D7               	fcall	___awdiv
+  2159  0094  0870               	movf	?___awdiv,w
+  2160  0095  3E01               	addlw	low ((_Digits-__stringbase)| (0+32768))
+  2161  0096  0084               	movwf	4
+  2162  0097  22EC               	fcall	stringdir
+  2163  0098  00FB               	movwf	??_Seven_Seg_Display+2
+  2164  0099  077B               	addwf	??_Seven_Seg_Display+2,w
+  2165  009A  1283               	bcf	3,5	;RP0=0, select bank0
+  2166  009B  1303               	bcf	3,6	;RP1=0, select bank0
+  2167  009C  0086               	movwf	6	;volatile
+  2168                           
+  2169                           ;../core/base/seven_seg/src/seven_seg.c: 25:             Toggle_Seg = (uint8_t)0;
+  2170  009D  01B5               	clrf	Seven_Seg_Display@Toggle_Seg
+  2171                           
+  2172                           ;../core/base/seven_seg/src/seven_seg.c: 26:         }
+  2173  009E  0008               	return
+  2174  009F                     i1l27:	
+  2175                           ;../core/base/seven_seg/src/seven_seg.c: 27:         else
+  2176                           
+  2177                           
+  2178                           ;../core/base/seven_seg/src/seven_seg.c: 28:         {;../core/base/seven_seg/src/seven_
+      +                          seg.c: 29:             RA0 = (uint8_t)0;
+  2179  009F  1005               	bcf	5,0	;volatile
+  2180                           
+  2181                           ;../core/base/seven_seg/src/seven_seg.c: 30:             RA1 = (uint8_t)1;
+  2182  00A0  1485               	bsf	5,1	;volatile
+  2183                           
+  2184                           ;../core/base/seven_seg/src/seven_seg.c: 32:             PORTB = (Digits[Segment_Handler
+      +                          .Segment_Value%10]) << 1;
+  2185  00A1  300A               	movlw	10
+  2186  00A2  00F0               	movwf	___awmod@divisor
+  2187  00A3  3000               	movlw	0
+  2188  00A4  00F1               	movwf	___awmod@divisor+1
+  2189  00A5  082E               	movf	_Segment_Handler,w
+  2190  00A6  397F               	andlw	127
+  2191  00A7  00F9               	movwf	??_Seven_Seg_Display
+  2192  00A8  01FA               	clrf	??_Seven_Seg_Display+1
+  2193  00A9  0879               	movf	??_Seven_Seg_Display,w
+  2194  00AA  00F2               	movwf	___awmod@dividend
+  2195  00AB  087A               	movf	??_Seven_Seg_Display+1,w
+  2196  00AC  00F3               	movwf	___awmod@dividend+1
+  2197  00AD  2130               	fcall	___awmod
+  2198  00AE  0870               	movf	?___awmod,w
+  2199  00AF  3E01               	addlw	low ((_Digits-__stringbase)| (0+32768))
+  2200  00B0  0084               	movwf	4
+  2201  00B1  22EC               	fcall	stringdir
+  2202  00B2  00FB               	movwf	??_Seven_Seg_Display+2
+  2203  00B3  077B               	addwf	??_Seven_Seg_Display+2,w
+  2204  00B4  1283               	bcf	3,5	;RP0=0, select bank0
+  2205  00B5  1303               	bcf	3,6	;RP1=0, select bank0
+  2206  00B6  0086               	movwf	6	;volatile
+  2207                           
+  2208                           ;../core/base/seven_seg/src/seven_seg.c: 33:             Toggle_Seg = (uint8_t)1;
+  2209  00B7  01B5               	clrf	Seven_Seg_Display@Toggle_Seg
+  2210  00B8  0AB5               	incf	Seven_Seg_Display@Toggle_Seg,f
+  2211  00B9  0008               	return
+  2212  00BA                     i1l26:	
+  2213                           ;../core/base/seven_seg/src/seven_seg.c: 37:     else
+  2214                           
+  2215                           
+  2216                           ;../core/base/seven_seg/src/seven_seg.c: 38:     {;../core/base/seven_seg/src/seven_seg.
+      +                          c: 39:         if ( (RA0 != (uint8_t)0) || (RA1 != (uint8_t)1) )
+  2217  00BA  1805               	btfsc	5,0	;volatile
+  2218  00BB  28BE               	goto	i1l32
+  2219  00BC  1885               	btfsc	5,1	;volatile
+  2220  00BD  28C0               	goto	i1l1316
+  2221  00BE                     i1l32:	
+  2222                           
+  2223                           ;../core/base/seven_seg/src/seven_seg.c: 40:         {;../core/base/seven_seg/src/seven_
+      +                          seg.c: 41:             RA0 = (uint8_t)0;
+  2224  00BE  1005               	bcf	5,0	;volatile
+  2225                           
+  2226                           ;../core/base/seven_seg/src/seven_seg.c: 42:             RA1 = (uint8_t)1;
+  2227  00BF  1485               	bsf	5,1	;volatile
+  2228  00C0                     i1l1316:	
+  2229                           
+  2230                           ;../core/base/seven_seg/src/seven_seg.c: 45:         PORTB = (Digits[Segment_Handler.Seg
+      +                          ment_Value%10]) << 1;
+  2231  00C0  300A               	movlw	10
+  2232  00C1  00F0               	movwf	___awmod@divisor
+  2233  00C2  3000               	movlw	0
+  2234  00C3  00F1               	movwf	___awmod@divisor+1
+  2235  00C4  082E               	movf	_Segment_Handler,w
+  2236  00C5  397F               	andlw	127
+  2237  00C6  00F9               	movwf	??_Seven_Seg_Display
+  2238  00C7  01FA               	clrf	??_Seven_Seg_Display+1
+  2239  00C8  0879               	movf	??_Seven_Seg_Display,w
+  2240  00C9  00F2               	movwf	___awmod@dividend
+  2241  00CA  087A               	movf	??_Seven_Seg_Display+1,w
+  2242  00CB  00F3               	movwf	___awmod@dividend+1
+  2243  00CC  2130               	fcall	___awmod
+  2244  00CD  0870               	movf	?___awmod,w
+  2245  00CE  3E01               	addlw	low ((_Digits-__stringbase)| (0+32768))
+  2246  00CF  0084               	movwf	4
+  2247  00D0  22EC               	fcall	stringdir
+  2248  00D1  00FB               	movwf	??_Seven_Seg_Display+2
+  2249  00D2  077B               	addwf	??_Seven_Seg_Display+2,w
+  2250  00D3  1283               	bcf	3,5	;RP0=0, select bank0
+  2251  00D4  1303               	bcf	3,6	;RP1=0, select bank0
+  2252  00D5  0086               	movwf	6	;volatile
+  2253  00D6  0008               	return
+  2254  00D7                     __end_of_Seven_Seg_Display:	
+  2255                           
+  2256                           	psect	text21
+  2257  00D7                     __ptext21:	
+  2258 ;; *************** function ___awdiv *****************
+  2259 ;; Defined at:
+  2260 ;;		line 5 in file "C:\Program Files\Microchip\xc8\v2.05\pic\sources\c90\common\awdiv.c"
+  2261 ;; Parameters:    Size  Location     Type
+  2262 ;;  divisor         2    0[COMMON] int 
+  2263 ;;  dividend        2    2[COMMON] int 
+  2264 ;; Auto vars:     Size  Location     Type
+  2265 ;;  quotient        2    7[COMMON] int 
+  2266 ;;  sign            1    6[COMMON] unsigned char 
+  2267 ;;  counter         1    5[COMMON] unsigned char 
+  2268 ;; Return value:  Size  Location     Type
+  2269 ;;                  2    0[COMMON] int 
+  2270 ;; Registers used:
+  2271 ;;		wreg, status,2, status,0
+  2272 ;; Tracked objects:
+  2273 ;;		On entry : 0/0
+  2274 ;;		On exit  : 0/0
+  2275 ;;		Unchanged: 0/0
+  2276 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2277 ;;      Params:         4       0       0       0
+  2278 ;;      Locals:         4       0       0       0
+  2279 ;;      Temps:          1       0       0       0
+  2280 ;;      Totals:         9       0       0       0
+  2281 ;;Total ram usage:        9 bytes
+  2282 ;; Hardware stack levels used:    1
+  2283 ;; This function calls:
+  2284 ;;		Nothing
+  2285 ;; This function is called by:
+  2286 ;;		_Seven_Seg_Display
+  2287 ;; This function uses a non-reentrant model
+  2288 ;;
+  2289                           
+  2290                           
+  2291                           ;psect for function ___awdiv
+  2292  00D7                     ___awdiv:	
+  2293                           
+  2294                           ;incstack = 0
+  2295                           ; Regs used in ___awdiv: [wreg+status,2+status,0]
+  2296  00D7  01F6               	clrf	___awdiv@sign
+  2297  00D8  1FF1               	btfss	___awdiv@divisor+1,7
+  2298  00D9  28E1               	goto	i1l1222
+  2299  00DA  09F0               	comf	___awdiv@divisor,f
+  2300  00DB  09F1               	comf	___awdiv@divisor+1,f
+  2301  00DC  0AF0               	incf	___awdiv@divisor,f
+  2302  00DD  1903               	skipnz
+  2303  00DE  0AF1               	incf	___awdiv@divisor+1,f
+  2304  00DF  01F6               	clrf	___awdiv@sign
+  2305  00E0  0AF6               	incf	___awdiv@sign,f
+  2306  00E1                     i1l1222:	
+  2307  00E1  1FF3               	btfss	___awdiv@dividend+1,7
+  2308  00E2  28EC               	goto	i1l1228
+  2309  00E3  09F2               	comf	___awdiv@dividend,f
+  2310  00E4  09F3               	comf	___awdiv@dividend+1,f
+  2311  00E5  0AF2               	incf	___awdiv@dividend,f
+  2312  00E6  1903               	skipnz
+  2313  00E7  0AF3               	incf	___awdiv@dividend+1,f
+  2314  00E8  3001               	movlw	1
+  2315  00E9  00F4               	movwf	??___awdiv
+  2316  00EA  0874               	movf	??___awdiv,w
+  2317  00EB  06F6               	xorwf	___awdiv@sign,f
+  2318  00EC                     i1l1228:	
+  2319  00EC  01F7               	clrf	___awdiv@quotient
+  2320  00ED  01F8               	clrf	___awdiv@quotient+1
+  2321  00EE  0870               	movf	___awdiv@divisor,w
+  2322  00EF  0471               	iorwf	___awdiv@divisor+1,w
+  2323  00F0  1903               	btfsc	3,2
+  2324  00F1  2923               	goto	i1l1250
+  2325  00F2  01F5               	clrf	___awdiv@counter
+  2326  00F3  0AF5               	incf	___awdiv@counter,f
+  2327  00F4                     i1l1238:	
+  2328  00F4  1BF1               	btfsc	___awdiv@divisor+1,7
+  2329  00F5  2902               	goto	i1l1240
+  2330  00F6  3001               	movlw	1
+  2331  00F7                     u61_25:	
+  2332  00F7  1003               	clrc
+  2333  00F8  0DF0               	rlf	___awdiv@divisor,f
+  2334  00F9  0DF1               	rlf	___awdiv@divisor+1,f
+  2335  00FA  3EFF               	addlw	-1
+  2336  00FB  1D03               	skipz
+  2337  00FC  28F7               	goto	u61_25
+  2338  00FD  3001               	movlw	1
+  2339  00FE  00F4               	movwf	??___awdiv
+  2340  00FF  0874               	movf	??___awdiv,w
+  2341  0100  07F5               	addwf	___awdiv@counter,f
+  2342  0101  28F4               	goto	i1l1238
+  2343  0102                     i1l1240:	
+  2344  0102  3001               	movlw	1
+  2345  0103                     u63_25:	
+  2346  0103  1003               	clrc
+  2347  0104  0DF7               	rlf	___awdiv@quotient,f
+  2348  0105  0DF8               	rlf	___awdiv@quotient+1,f
+  2349  0106  3EFF               	addlw	-1
+  2350  0107  1D03               	skipz
+  2351  0108  2903               	goto	u63_25
+  2352  0109  0871               	movf	___awdiv@divisor+1,w
+  2353  010A  0273               	subwf	___awdiv@dividend+1,w
+  2354  010B  1D03               	skipz
+  2355  010C  290F               	goto	u64_25
+  2356  010D  0870               	movf	___awdiv@divisor,w
+  2357  010E  0272               	subwf	___awdiv@dividend,w
+  2358  010F                     u64_25:	
+  2359  010F  1C03               	skipc
+  2360  0110  2918               	goto	i1l1246
+  2361  0111  0870               	movf	___awdiv@divisor,w
+  2362  0112  02F2               	subwf	___awdiv@dividend,f
+  2363  0113  0871               	movf	___awdiv@divisor+1,w
+  2364  0114  1C03               	skipc
+  2365  0115  03F3               	decf	___awdiv@dividend+1,f
+  2366  0116  02F3               	subwf	___awdiv@dividend+1,f
+  2367  0117  1477               	bsf	___awdiv@quotient,0
+  2368  0118                     i1l1246:	
+  2369  0118  3001               	movlw	1
+  2370  0119                     u65_25:	
+  2371  0119  1003               	clrc
+  2372  011A  0CF1               	rrf	___awdiv@divisor+1,f
+  2373  011B  0CF0               	rrf	___awdiv@divisor,f
+  2374  011C  3EFF               	addlw	-1
+  2375  011D  1D03               	skipz
+  2376  011E  2919               	goto	u65_25
+  2377  011F  3001               	movlw	1
+  2378  0120  02F5               	subwf	___awdiv@counter,f
+  2379  0121  1D03               	btfss	3,2
+  2380  0122  2902               	goto	i1l1240
+  2381  0123                     i1l1250:	
+  2382  0123  0876               	movf	___awdiv@sign,w
+  2383  0124  1903               	btfsc	3,2
+  2384  0125  292B               	goto	i1l1254
+  2385  0126  09F7               	comf	___awdiv@quotient,f
+  2386  0127  09F8               	comf	___awdiv@quotient+1,f
+  2387  0128  0AF7               	incf	___awdiv@quotient,f
+  2388  0129  1903               	skipnz
+  2389  012A  0AF8               	incf	___awdiv@quotient+1,f
+  2390  012B                     i1l1254:	
+  2391  012B  0878               	movf	___awdiv@quotient+1,w
+  2392  012C  00F1               	movwf	?___awdiv+1
+  2393  012D  0877               	movf	___awdiv@quotient,w
+  2394  012E  00F0               	movwf	?___awdiv
+  2395  012F  0008               	return
+  2396  0130                     __end_of___awdiv:	
+  2397                           
+  2398                           	psect	text22
+  2399  033F                     __ptext22:	
+  2400 ;; *************** function _xTask_100ms *****************
+  2401 ;; Defined at:
+  2402 ;;		line 63 in file "../core/sysos/src/sys_os.c"
+  2403 ;; Parameters:    Size  Location     Type
+  2404 ;;		None
+  2405 ;; Auto vars:     Size  Location     Type
+  2406 ;;		None
+  2407 ;; Return value:  Size  Location     Type
+  2408 ;;                  1    wreg      void 
+  2409 ;; Registers used:
+  2410 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  2411 ;; Tracked objects:
+  2412 ;;		On entry : 0/0
+  2413 ;;		On exit  : 0/0
+  2414 ;;		Unchanged: 0/0
+  2415 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2416 ;;      Params:         0       0       0       0
+  2417 ;;      Locals:         0       0       0       0
+  2418 ;;      Temps:          0       0       0       0
+  2419 ;;      Totals:         0       0       0       0
+  2420 ;;Total ram usage:        0 bytes
+  2421 ;; Hardware stack levels used:    1
+  2422 ;; Hardware stack levels required when called:    1
+  2423 ;; This function calls:
+  2424 ;;		_SetTime_Button_Handler
+  2425 ;; This function is called by:
+  2426 ;;		_SysOs_Task_Exe
+  2427 ;; This function uses a non-reentrant model
+  2428 ;;
+  2429                           
+  2430                           
+  2431                           ;psect for function _xTask_100ms
+  2432  033F                     _xTask_100ms:	
+  2433                           
+  2434                           ;../core/sysos/src/sys_os.c: 65:     SetTime_Button_Handler();
+  2435                           
+  2436                           ;incstack = 0
+  2437                           ; Regs used in _xTask_100ms: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  2438  033F  21C5               	fcall	_SetTime_Button_Handler
+  2439  0340  0008               	return
+  2440  0341                     __end_of_xTask_100ms:	
+  2441                           
+  2442                           	psect	text23
+  2443  01C5                     __ptext23:	
+  2444 ;; *************** function _SetTime_Button_Handler *****************
+  2445 ;; Defined at:
+  2446 ;;		line 35 in file "../core/base/com_control/src/com_control.c"
+  2447 ;; Parameters:    Size  Location     Type
+  2448 ;;		None
+  2449 ;; Auto vars:     Size  Location     Type
+  2450 ;;		None
+  2451 ;; Return value:  Size  Location     Type
+  2452 ;;                  1    wreg      void 
+  2453 ;; Registers used:
+  2454 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  2455 ;; Tracked objects:
+  2456 ;;		On entry : 0/0
+  2457 ;;		On exit  : 0/0
+  2458 ;;		Unchanged: 0/0
+  2459 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2460 ;;      Params:         0       0       0       0
+  2461 ;;      Locals:         0       0       0       0
+  2462 ;;      Temps:          2       0       0       0
+  2463 ;;      Totals:         2       0       0       0
+  2464 ;;Total ram usage:        2 bytes
+  2465 ;; Hardware stack levels used:    1
+  2466 ;; This function calls:
+  2467 ;;		Nothing
+  2468 ;; This function is called by:
+  2469 ;;		_xTask_100ms
+  2470 ;; This function uses a non-reentrant model
+  2471 ;;
+  2472                           
+  2473                           
+  2474                           ;psect for function _SetTime_Button_Handler
+  2475  01C5                     _SetTime_Button_Handler:	
+  2476                           
+  2477                           ;../core/base/com_control/src/com_control.c: 37:     static unsigned char KeyPressCount 
+      +                          = 0;;../core/base/com_control/src/com_control.c: 38:     static unsigned char KeyPressed
+      +                           = (uint8_t)0;;../core/base/com_control/src/com_control.c: 40:     if ((!RA2) && (KeyPre
+      +                          ssed == (uint8_t)0))
+  2478                           
+  2479                           ;incstack = 0
+  2480                           ; Regs used in _SetTime_Button_Handler: [wreg-fsr0h+status,2+status,0]
+  2481  01C5  1283               	bcf	3,5	;RP0=0, select bank0
+  2482  01C6  1303               	bcf	3,6	;RP1=0, select bank0
+  2483  01C7  1905               	btfsc	5,2	;volatile
+  2484  01C8  29CF               	goto	i1l1324
+  2485  01C9  0830               	movf	SetTime_Button_Handler@KeyPressed,w
+  2486  01CA  1D03               	btfss	3,2
+  2487  01CB  29CF               	goto	i1l1324
+  2488                           
+  2489                           ;../core/base/com_control/src/com_control.c: 41:     {;../core/base/com_control/src/com_
+      +                          control.c: 42:         KeyPressed = (uint8_t)1;
+  2490  01CC  01B0               	clrf	SetTime_Button_Handler@KeyPressed
+  2491  01CD  0AB0               	incf	SetTime_Button_Handler@KeyPressed,f
+  2492                           
+  2493                           ;../core/base/com_control/src/com_control.c: 43:     }
+  2494  01CE  0008               	return
+  2495  01CF                     i1l1324:	
+  2496  01CF  0830               	movf	SetTime_Button_Handler@KeyPressed,w
+  2497  01D0  1903               	btfsc	3,2
+  2498  01D1  0008               	return
+  2499  01D2  1D05               	btfss	5,2	;volatile
+  2500  01D3  0008               	return
+  2501                           
+  2502                           ;../core/base/com_control/src/com_control.c: 46:     {;../core/base/com_control/src/com_
+      +                          control.c: 47:         KeyPressed = (uint8_t)0;
+  2503  01D4  01B0               	clrf	SetTime_Button_Handler@KeyPressed
+  2504                           
+  2505                           ;../core/base/com_control/src/com_control.c: 49:         KeyPressCount++;
+  2506  01D5  3001               	movlw	1
+  2507  01D6  00F0               	movwf	??_SetTime_Button_Handler
+  2508  01D7  0870               	movf	??_SetTime_Button_Handler,w
+  2509  01D8  07B1               	addwf	SetTime_Button_Handler@KeyPressCount,f
+  2510                           
+  2511                           ;../core/base/com_control/src/com_control.c: 51:         switch (KeyPressCount)
+  2512  01D9  29E3               	goto	i1l1334
+  2513  01DA                     i1l189:	
+  2514                           ;../core/base/com_control/src/com_control.c: 52:         {;../core/base/com_control/src/
+      +                          com_control.c: 53:             case 1:
+  2515                           
+  2516                           
+  2517                           ;../core/base/com_control/src/com_control.c: 54:             {;../core/base/com_control/
+      +                          src/com_control.c: 55:     SetTimeHandler.KeyPressedFor_OnTime = (uint8_t)1;
+  2518  01DA  1433               	bsf	_SetTimeHandler,0
+  2519                           
+  2520                           ;../core/base/com_control/src/com_control.c: 56:                 break;
+  2521  01DB  0008               	return
+  2522  01DC                     i1l191:	
+  2523                           ;../core/base/com_control/src/com_control.c: 57:             };../core/base/com_control/
+      +                          src/com_control.c: 59:             case 2:
+  2524                           
+  2525                           
+  2526                           ;../core/base/com_control/src/com_control.c: 60:             {;../core/base/com_control/
+      +                          src/com_control.c: 61:     SetTimeHandler.KeyPressedFor_OnTime = (uint8_t)0;
+  2527  01DC  1033               	bcf	_SetTimeHandler,0
+  2528                           
+  2529                           ;../core/base/com_control/src/com_control.c: 62:                 break;
+  2530  01DD  0008               	return
+  2531  01DE                     i1l192:	
+  2532                           ;../core/base/com_control/src/com_control.c: 63:             };../core/base/com_control/
+      +                          src/com_control.c: 65:             case 3:
+  2533                           
+  2534                           
+  2535                           ;../core/base/com_control/src/com_control.c: 66:             {;../core/base/com_control/
+      +                          src/com_control.c: 67:     SetTimeHandler.KeyPressedFor_OffTime = (uint8_t)1;
+  2536  01DE  14B3               	bsf	_SetTimeHandler,1
+  2537                           
+  2538                           ;../core/base/com_control/src/com_control.c: 68:                 break;
+  2539  01DF  0008               	return
+  2540  01E0                     i1l193:	
+  2541                           ;../core/base/com_control/src/com_control.c: 69:             };../core/base/com_control/
+      +                          src/com_control.c: 71:             case 4:
+  2542                           
+  2543                           
+  2544                           ;../core/base/com_control/src/com_control.c: 72:             {;../core/base/com_control/
+      +                          src/com_control.c: 73:     SetTimeHandler.KeyPressedFor_OffTime = (uint8_t)0;
+  2545  01E0  10B3               	bcf	_SetTimeHandler,1
+  2546                           
+  2547                           ;../core/base/com_control/src/com_control.c: 75:     KeyPressCount = (uint8_t)0;
+  2548  01E1  01B1               	clrf	SetTime_Button_Handler@KeyPressCount
+  2549                           
+  2550                           ;../core/base/com_control/src/com_control.c: 77:                 break;
+  2551  01E2  0008               	return
+  2552  01E3                     i1l1334:	
+  2553  01E3  0831               	movf	SetTime_Button_Handler@KeyPressCount,w
+  2554  01E4  00F0               	movwf	??_SetTime_Button_Handler
+  2555  01E5  01F1               	clrf	??_SetTime_Button_Handler+1
+  2556                           
+  2557                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+  2558                           ; Switch size 1, requested type "simple"
+  2559                           ; Number of cases is 1, Range of values is 0 to 0
+  2560                           ; switch strategies available:
+  2561                           ; Name         Instructions Cycles
+  2562                           ; simple_byte            4     3 (average)
+  2563                           ; direct_byte            7     6 (fixed)
+  2564                           ; jumptable            260     6 (fixed)
+  2565                           ;	Chosen strategy is simple_byte
+  2566  01E6  0871               	movf	??_SetTime_Button_Handler+1,w
+  2567  01E7  3A00               	xorlw	0	; case 0
+  2568  01E8  1903               	skipnz
+  2569  01E9  29EB               	goto	i1l1554
+  2570  01EA  29F9               	goto	i1l187
+  2571  01EB                     i1l1554:	
+  2572                           
+  2573                           ; Switch size 1, requested type "simple"
+  2574                           ; Number of cases is 4, Range of values is 1 to 4
+  2575                           ; switch strategies available:
+  2576                           ; Name         Instructions Cycles
+  2577                           ; simple_byte           13     7 (average)
+  2578                           ; direct_byte           13     9 (fixed)
+  2579                           ; jumptable            263     9 (fixed)
+  2580                           ;	Chosen strategy is simple_byte
+  2581  01EB  0870               	movf	??_SetTime_Button_Handler,w
+  2582  01EC  3A01               	xorlw	1	; case 1
+  2583  01ED  1903               	skipnz
+  2584  01EE  29DA               	goto	i1l189
+  2585  01EF  3A03               	xorlw	3	; case 2
+  2586  01F0  1903               	skipnz
+  2587  01F1  29DC               	goto	i1l191
+  2588  01F2  3A01               	xorlw	1	; case 3
+  2589  01F3  1903               	skipnz
+  2590  01F4  29DE               	goto	i1l192
+  2591  01F5  3A07               	xorlw	7	; case 4
+  2592  01F6  1903               	skipnz
+  2593  01F7  29E0               	goto	i1l193
+  2594  01F8  29F9               	goto	i1l187
+  2595  01F9                     i1l187:	
+  2596                           ;../core/base/com_control/src/com_control.c: 85:     }
+  2597                           
+  2598  01F9  0008               	return
+  2599  01FA                     __end_of_SetTime_Button_Handler:	
+  2600                           
+  2601                           	psect	text24
+  2602  0341                     __ptext24:	
+  2603 ;; *************** function _xTask_1000ms *****************
+  2604 ;; Defined at:
+  2605 ;;		line 68 in file "../core/sysos/src/sys_os.c"
+  2606 ;; Parameters:    Size  Location     Type
+  2607 ;;		None
+  2608 ;; Auto vars:     Size  Location     Type
+  2609 ;;		None
+  2610 ;; Return value:  Size  Location     Type
+  2611 ;;                  1    wreg      void 
+  2612 ;; Registers used:
+  2613 ;;		wreg, status,2, status,0, pclath, cstack
+  2614 ;; Tracked objects:
+  2615 ;;		On entry : 0/0
+  2616 ;;		On exit  : 0/0
+  2617 ;;		Unchanged: 0/0
+  2618 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2619 ;;      Params:         0       0       0       0
+  2620 ;;      Locals:         0       0       0       0
+  2621 ;;      Temps:          0       0       0       0
+  2622 ;;      Totals:         0       0       0       0
+  2623 ;;Total ram usage:        0 bytes
+  2624 ;; Hardware stack levels used:    1
+  2625 ;; Hardware stack levels required when called:    1
+  2626 ;; This function calls:
+  2627 ;;		_ComControl_Monitor_Time
+  2628 ;; This function is called by:
+  2629 ;;		_SysOs_Task_Exe
+  2630 ;; This function uses a non-reentrant model
+  2631 ;;
+  2632                           
+  2633                           
+  2634                           ;psect for function _xTask_1000ms
+  2635  0341                     _xTask_1000ms:	
+  2636                           
+  2637                           ;../core/sysos/src/sys_os.c: 70:     ComControl_Monitor_Time();
+  2638                           
+  2639                           ;incstack = 0
+  2640                           ; Regs used in _xTask_1000ms: [wreg+status,2+status,0+pclath+cstack]
+  2641  0341  2318               	fcall	_ComControl_Monitor_Time
+  2642  0342  0008               	return
+  2643  0343                     __end_of_xTask_1000ms:	
+  2644                           
+  2645                           	psect	text25
+  2646  0318                     __ptext25:	
+  2647 ;; *************** function _ComControl_Monitor_Time *****************
+  2648 ;; Defined at:
+  2649 ;;		line 206 in file "../core/base/com_control/src/com_control.c"
+  2650 ;; Parameters:    Size  Location     Type
+  2651 ;;		None
+  2652 ;; Auto vars:     Size  Location     Type
+  2653 ;;		None
+  2654 ;; Return value:  Size  Location     Type
+  2655 ;;                  1    wreg      void 
+  2656 ;; Registers used:
+  2657 ;;		wreg, status,2, status,0
+  2658 ;; Tracked objects:
+  2659 ;;		On entry : 0/0
+  2660 ;;		On exit  : 0/0
+  2661 ;;		Unchanged: 0/0
+  2662 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2663 ;;      Params:         0       0       0       0
+  2664 ;;      Locals:         0       0       0       0
+  2665 ;;      Temps:          1       0       0       0
+  2666 ;;      Totals:         1       0       0       0
+  2667 ;;Total ram usage:        1 bytes
+  2668 ;; Hardware stack levels used:    1
+  2669 ;; This function calls:
+  2670 ;;		Nothing
+  2671 ;; This function is called by:
+  2672 ;;		_xTask_1000ms
+  2673 ;; This function uses a non-reentrant model
+  2674 ;;
+  2675                           
+  2676                           
+  2677                           ;psect for function _ComControl_Monitor_Time
+  2678  0318                     _ComControl_Monitor_Time:	
+  2679                           
+  2680                           ;../core/base/com_control/src/com_control.c: 208:  if (SetTimeHandler.System_Mode == (ui
+      +                          nt8_t)0X02)
+  2681                           
+  2682                           ;incstack = 0
+  2683                           ; Regs used in _ComControl_Monitor_Time: [wreg+status,2+status,0]
+  2684  0318  1283               	bcf	3,5	;RP0=0, select bank0
+  2685  0319  1303               	bcf	3,6	;RP1=0, select bank0
+  2686  031A  0C33               	rrf	_SetTimeHandler,w
+  2687  031B  00F0               	movwf	??_ComControl_Monitor_Time
+  2688  031C  0C70               	rrf	??_ComControl_Monitor_Time,w
+  2689  031D  3903               	andlw	3
+  2690  031E  3A02               	xorlw	2
+  2691  031F  1D03               	skipz
+  2692  0320  0008               	return
+  2693                           
+  2694                           ;../core/base/com_control/src/com_control.c: 209:  {;../core/base/com_control/src/com_co
+      +                          ntrol.c: 210:   System_Time_Shadow--;
+  2695  0321  3001               	movlw	1
+  2696  0322  02B2               	subwf	_System_Time_Shadow,f
+  2697  0323  0008               	return
+  2698  0324                     __end_of_ComControl_Monitor_Time:	
+  2699                           
+  2700                           	psect	text26
+  2701  017B                     __ptext26:	
+  2702 ;; *************** function _SysOs_Task_Eval *****************
+  2703 ;; Defined at:
+  2704 ;;		line 28 in file "../core/sysos/src/sys_os.c"
+  2705 ;; Parameters:    Size  Location     Type
+  2706 ;;		None
+  2707 ;; Auto vars:     Size  Location     Type
+  2708 ;;		None
+  2709 ;; Return value:  Size  Location     Type
+  2710 ;;                  1    wreg      void 
+  2711 ;; Registers used:
+  2712 ;;		wreg, status,2, status,0, pclath, cstack
+  2713 ;; Tracked objects:
+  2714 ;;		On entry : 0/0
+  2715 ;;		On exit  : 0/0
+  2716 ;;		Unchanged: 0/0
+  2717 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2718 ;;      Params:         0       0       0       0
+  2719 ;;      Locals:         0       0       0       0
+  2720 ;;      Temps:          2       0       0       0
+  2721 ;;      Totals:         2       0       0       0
+  2722 ;;Total ram usage:        2 bytes
+  2723 ;; Hardware stack levels used:    1
+  2724 ;; Hardware stack levels required when called:    1
+  2725 ;; This function calls:
+  2726 ;;		___awmod
+  2727 ;; This function is called by:
+  2728 ;;		_ISR
+  2729 ;; This function uses a non-reentrant model
+  2730 ;;
+  2731                           
+  2732                           
+  2733                           ;psect for function _SysOs_Task_Eval
+  2734  017B                     _SysOs_Task_Eval:	
+  2735                           
+  2736                           ;../core/sysos/src/sys_os.c: 30:     SysOs_Tick_Counter++;
+  2737                           
+  2738                           ;incstack = 0
+  2739                           ; Regs used in _SysOs_Task_Eval: [wreg+status,2+status,0+pclath+cstack]
+  2740  017B  3001               	movlw	1
+  2741  017C  00F7               	movwf	??_SysOs_Task_Eval
+  2742  017D  0877               	movf	??_SysOs_Task_Eval,w
+  2743  017E  07FD               	addwf	_SysOs_Tick_Counter,f
+  2744                           
+  2745                           ;../core/sysos/src/sys_os.c: 32:     SysOs_Handle.Task_x10_Stat = (uint8_t)1;
+  2746  017F  147C               	bsf	_SysOs_Handle,0
+  2747                           
+  2748                           ;../core/sysos/src/sys_os.c: 34:     SysOs_Handle.Task2_x20_Stat = (SysOs_Tick_Counter %
+      +                           2) ? (uint8_t)0 : (uint8_t)1;
+  2749  0180  187D               	btfsc	_SysOs_Tick_Counter,0
+  2750  0181  2984               	goto	u103_20
+  2751  0182  14FC               	bsf	_SysOs_Handle,1
+  2752  0183  2985               	goto	i1l1462
+  2753  0184                     u103_20:	
+  2754  0184  10FC               	bcf	_SysOs_Handle,1
+  2755  0185                     i1l1462:	
+  2756                           
+  2757                           ;../core/sysos/src/sys_os.c: 36:     SysOs_Handle.Task3_x50_Stat = (SysOs_Tick_Counter %
+      +                           5) ? (uint8_t)0 : (uint8_t)1;
+  2758  0185  3005               	movlw	5
+  2759  0186  00F0               	movwf	___awmod@divisor
+  2760  0187  3000               	movlw	0
+  2761  0188  00F1               	movwf	___awmod@divisor+1
+  2762  0189  087D               	movf	_SysOs_Tick_Counter,w
+  2763  018A  00F7               	movwf	??_SysOs_Task_Eval
+  2764  018B  01F8               	clrf	??_SysOs_Task_Eval+1
+  2765  018C  0877               	movf	??_SysOs_Task_Eval,w
+  2766  018D  00F2               	movwf	___awmod@dividend
+  2767  018E  0878               	movf	??_SysOs_Task_Eval+1,w
+  2768  018F  00F3               	movwf	___awmod@dividend+1
+  2769  0190  2130               	fcall	___awmod
+  2770  0191  0870               	movf	?___awmod,w
+  2771  0192  0471               	iorwf	?___awmod+1,w
+  2772  0193  1D03               	btfss	3,2
+  2773  0194  2997               	goto	u105_20
+  2774  0195  157C               	bsf	_SysOs_Handle,2
+  2775  0196  2998               	goto	i1l1464
+  2776  0197                     u105_20:	
+  2777  0197  117C               	bcf	_SysOs_Handle,2
+  2778  0198                     i1l1464:	
+  2779                           
+  2780                           ;../core/sysos/src/sys_os.c: 38:     SysOs_Handle.Task4_x100_Stat = (SysOs_Tick_Counter 
+      +                          % 10) ? (uint8_t)0 : (uint8_t)1;
+  2781  0198  300A               	movlw	10
+  2782  0199  00F0               	movwf	___awmod@divisor
+  2783  019A  3000               	movlw	0
+  2784  019B  00F1               	movwf	___awmod@divisor+1
+  2785  019C  087D               	movf	_SysOs_Tick_Counter,w
+  2786  019D  00F7               	movwf	??_SysOs_Task_Eval
+  2787  019E  01F8               	clrf	??_SysOs_Task_Eval+1
+  2788  019F  0877               	movf	??_SysOs_Task_Eval,w
+  2789  01A0  00F2               	movwf	___awmod@dividend
+  2790  01A1  0878               	movf	??_SysOs_Task_Eval+1,w
+  2791  01A2  00F3               	movwf	___awmod@dividend+1
+  2792  01A3  2130               	fcall	___awmod
+  2793  01A4  0870               	movf	?___awmod,w
+  2794  01A5  0471               	iorwf	?___awmod+1,w
+  2795  01A6  1D03               	btfss	3,2
+  2796  01A7  29AA               	goto	u107_20
+  2797  01A8  15FC               	bsf	_SysOs_Handle,3
+  2798  01A9  29AB               	goto	i1l1466
+  2799  01AA                     u107_20:	
+  2800  01AA  11FC               	bcf	_SysOs_Handle,3
+  2801  01AB                     i1l1466:	
+  2802                           
+  2803                           ;../core/sysos/src/sys_os.c: 40:     SysOs_Handle.Task4_x1000_Stat = (SysOs_Tick_Counter
+      +                           % 100) ? (uint8_t)0 : (uint8_t)1;
+  2804  01AB  3064               	movlw	100
+  2805  01AC  00F0               	movwf	___awmod@divisor
+  2806  01AD  3000               	movlw	0
+  2807  01AE  00F1               	movwf	___awmod@divisor+1
+  2808  01AF  087D               	movf	_SysOs_Tick_Counter,w
+  2809  01B0  00F7               	movwf	??_SysOs_Task_Eval
+  2810  01B1  01F8               	clrf	??_SysOs_Task_Eval+1
+  2811  01B2  0877               	movf	??_SysOs_Task_Eval,w
+  2812  01B3  00F2               	movwf	___awmod@dividend
+  2813  01B4  0878               	movf	??_SysOs_Task_Eval+1,w
+  2814  01B5  00F3               	movwf	___awmod@dividend+1
+  2815  01B6  2130               	fcall	___awmod
+  2816  01B7  0870               	movf	?___awmod,w
+  2817  01B8  0471               	iorwf	?___awmod+1,w
+  2818  01B9  1D03               	btfss	3,2
+  2819  01BA  29BD               	goto	u109_20
+  2820  01BB  167C               	bsf	_SysOs_Handle,4
+  2821  01BC  29BE               	goto	i1l1468
+  2822  01BD                     u109_20:	
+  2823  01BD  127C               	bcf	_SysOs_Handle,4
+  2824  01BE                     i1l1468:	
+  2825                           
+  2826                           ;../core/sysos/src/sys_os.c: 42:     if (SysOs_Tick_Counter == 100)
+  2827  01BE  3064               	movlw	100
+  2828  01BF  067D               	xorwf	_SysOs_Tick_Counter,w
+  2829  01C0  1D03               	btfss	3,2
+  2830  01C1  0008               	return
+  2831                           
+  2832                           ;../core/sysos/src/sys_os.c: 43:     {;../core/sysos/src/sys_os.c: 44:         SysOs_Tic
+      +                          k_Counter = 1;
+  2833  01C2  01FD               	clrf	_SysOs_Tick_Counter
+  2834  01C3  0AFD               	incf	_SysOs_Tick_Counter,f
+  2835  01C4  0008               	return
+  2836  01C5                     __end_of_SysOs_Task_Eval:	
+  2837                           
+  2838                           	psect	text27
+  2839  0130                     __ptext27:	
+  2840 ;; *************** function ___awmod *****************
+  2841 ;; Defined at:
+  2842 ;;		line 5 in file "C:\Program Files\Microchip\xc8\v2.05\pic\sources\c90\common\awmod.c"
+  2843 ;; Parameters:    Size  Location     Type
+  2844 ;;  divisor         2    0[COMMON] int 
+  2845 ;;  dividend        2    2[COMMON] int 
+  2846 ;; Auto vars:     Size  Location     Type
+  2847 ;;  sign            1    6[COMMON] unsigned char 
+  2848 ;;  counter         1    5[COMMON] unsigned char 
+  2849 ;; Return value:  Size  Location     Type
+  2850 ;;                  2    0[COMMON] int 
+  2851 ;; Registers used:
+  2852 ;;		wreg, status,2, status,0
+  2853 ;; Tracked objects:
+  2854 ;;		On entry : 0/0
+  2855 ;;		On exit  : 0/0
+  2856 ;;		Unchanged: 0/0
+  2857 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2858 ;;      Params:         4       0       0       0
+  2859 ;;      Locals:         2       0       0       0
+  2860 ;;      Temps:          1       0       0       0
+  2861 ;;      Totals:         7       0       0       0
+  2862 ;;Total ram usage:        7 bytes
+  2863 ;; Hardware stack levels used:    1
+  2864 ;; This function calls:
+  2865 ;;		Nothing
+  2866 ;; This function is called by:
+  2867 ;;		_Seven_Seg_Display
+  2868 ;;		_SysOs_Task_Eval
+  2869 ;; This function uses a non-reentrant model
+  2870 ;;
+  2871                           
+  2872                           
+  2873                           ;psect for function ___awmod
+  2874  0130                     ___awmod:	
+  2875                           
+  2876                           ;incstack = 0
+  2877                           ; Regs used in ___awmod: [wreg+status,2+status,0]
+  2878  0130  01F6               	clrf	___awmod@sign
+  2879  0131  1FF3               	btfss	___awmod@dividend+1,7
+  2880  0132  293A               	goto	i1l1266
+  2881  0133  09F2               	comf	___awmod@dividend,f
+  2882  0134  09F3               	comf	___awmod@dividend+1,f
+  2883  0135  0AF2               	incf	___awmod@dividend,f
+  2884  0136  1903               	skipnz
+  2885  0137  0AF3               	incf	___awmod@dividend+1,f
+  2886  0138  01F6               	clrf	___awmod@sign
+  2887  0139  0AF6               	incf	___awmod@sign,f
+  2888  013A                     i1l1266:	
+  2889  013A  1FF1               	btfss	___awmod@divisor+1,7
+  2890  013B  2941               	goto	i1l1270
+  2891  013C  09F0               	comf	___awmod@divisor,f
+  2892  013D  09F1               	comf	___awmod@divisor+1,f
+  2893  013E  0AF0               	incf	___awmod@divisor,f
+  2894  013F  1903               	skipnz
+  2895  0140  0AF1               	incf	___awmod@divisor+1,f
+  2896  0141                     i1l1270:	
+  2897  0141  0870               	movf	___awmod@divisor,w
+  2898  0142  0471               	iorwf	___awmod@divisor+1,w
+  2899  0143  1903               	btfsc	3,2
+  2900  0144  296E               	goto	i1l1288
+  2901  0145  01F5               	clrf	___awmod@counter
+  2902  0146  0AF5               	incf	___awmod@counter,f
+  2903  0147                     i1l1278:	
+  2904  0147  1BF1               	btfsc	___awmod@divisor+1,7
+  2905  0148  2955               	goto	i1l1280
+  2906  0149  3001               	movlw	1
+  2907  014A                     u71_25:	
+  2908  014A  1003               	clrc
+  2909  014B  0DF0               	rlf	___awmod@divisor,f
+  2910  014C  0DF1               	rlf	___awmod@divisor+1,f
+  2911  014D  3EFF               	addlw	-1
+  2912  014E  1D03               	skipz
+  2913  014F  294A               	goto	u71_25
+  2914  0150  3001               	movlw	1
+  2915  0151  00F4               	movwf	??___awmod
+  2916  0152  0874               	movf	??___awmod,w
+  2917  0153  07F5               	addwf	___awmod@counter,f
+  2918  0154  2947               	goto	i1l1278
+  2919  0155                     i1l1280:	
+  2920  0155  0871               	movf	___awmod@divisor+1,w
+  2921  0156  0273               	subwf	___awmod@dividend+1,w
+  2922  0157  1D03               	skipz
+  2923  0158  295B               	goto	u73_25
+  2924  0159  0870               	movf	___awmod@divisor,w
+  2925  015A  0272               	subwf	___awmod@dividend,w
+  2926  015B                     u73_25:	
+  2927  015B  1C03               	skipc
+  2928  015C  2963               	goto	i1l1284
+  2929  015D  0870               	movf	___awmod@divisor,w
+  2930  015E  02F2               	subwf	___awmod@dividend,f
+  2931  015F  0871               	movf	___awmod@divisor+1,w
+  2932  0160  1C03               	skipc
+  2933  0161  03F3               	decf	___awmod@dividend+1,f
+  2934  0162  02F3               	subwf	___awmod@dividend+1,f
+  2935  0163                     i1l1284:	
+  2936  0163  3001               	movlw	1
+  2937  0164                     u74_25:	
+  2938  0164  1003               	clrc
+  2939  0165  0CF1               	rrf	___awmod@divisor+1,f
+  2940  0166  0CF0               	rrf	___awmod@divisor,f
+  2941  0167  3EFF               	addlw	-1
+  2942  0168  1D03               	skipz
+  2943  0169  2964               	goto	u74_25
+  2944  016A  3001               	movlw	1
+  2945  016B  02F5               	subwf	___awmod@counter,f
+  2946  016C  1D03               	btfss	3,2
+  2947  016D  2955               	goto	i1l1280
+  2948  016E                     i1l1288:	
+  2949  016E  0876               	movf	___awmod@sign,w
+  2950  016F  1903               	btfsc	3,2
+  2951  0170  2976               	goto	i1l1292
+  2952  0171  09F2               	comf	___awmod@dividend,f
+  2953  0172  09F3               	comf	___awmod@dividend+1,f
+  2954  0173  0AF2               	incf	___awmod@dividend,f
+  2955  0174  1903               	skipnz
+  2956  0175  0AF3               	incf	___awmod@dividend+1,f
+  2957  0176                     i1l1292:	
+  2958  0176  0873               	movf	___awmod@dividend+1,w
+  2959  0177  00F1               	movwf	?___awmod+1
+  2960  0178  0872               	movf	___awmod@dividend,w
+  2961  0179  00F0               	movwf	?___awmod
+  2962  017A  0008               	return
+  2963  017B                     __end_of___awmod:	
+  2964  007E                     btemp	set	126	;btemp
+  2965  007E                     wtemp0	set	126
 
 
 Data Sizes:
     Strings     0
-    Constant    0
-    Data        0
-    BSS         0
+    Constant    10
+    Data        2
+    BSS         10
     Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14      0       0
-    BANK0            80      0       0
+    COMMON           14     12      14
+    BANK0            80     12      22
     BANK1            80      0       0
     BANK2            48      0       0
 
@@ -218,7 +3076,27 @@ Critical Paths under _main in COMMON
 
     None.
 
+Critical Paths under _ISR in COMMON
+
+    _xTask_10ms->_Seven_Seg_Display
+    _Seven_Seg_Display->___awdiv
+    _xTask_100ms->_SetTime_Button_Handler
+    _xTask_1000ms->_ComControl_Monitor_Time
+    _SysOs_Task_Eval->___awmod
+
 Critical Paths under _main in BANK0
+
+    _main->_SetTime_Main
+    _SysOs_Init->_SetTime_Init
+    _SysOs_Init->_Seven_Seg_Init
+    _SetTime_Main->_SetTime_For_Off
+    _SetTime_Main->_SetTime_For_On
+    _SetTime_For_On->_SetTime_Delay
+    _SetTime_For_Off->_SetTime_Delay
+    _ComControl_Main->_ComControl_OffTime
+    _ComControl_OffTime->___bmul
+
+Critical Paths under _ISR in BANK0
 
     None.
 
@@ -226,7 +3104,15 @@ Critical Paths under _main in BANK1
 
     None.
 
+Critical Paths under _ISR in BANK1
+
+    None.
+
 Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
 
     None.
 
@@ -235,50 +3121,335 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 0     0      0       0
+ (0) _main                                                 0     0      0     742
+                    _ComControl_Main
+                       _SetTime_Main
+                   _Seven_Seg_Enable
+                         _SysOs_Init
  ---------------------------------------------------------------------------------
- Estimated maximum stack depth 0
+ (1) _SysOs_Init                                           0     0      0       0
+                       _SetTime_Init
+                  _Seven_Seg_Disable
+                     _Seven_Seg_Init
+              _Timer0_Interrupt_Init
+ ---------------------------------------------------------------------------------
+ (2) _Timer0_Interrupt_Init                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _Seven_Seg_Init                                       1     1      0       0
+                                              4 BANK0      1     1      0
+ ---------------------------------------------------------------------------------
+ (2) _Seven_Seg_Disable                                    0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _SetTime_Init                                         1     1      0       0
+                                              4 BANK0      1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _Seven_Seg_Enable                                     0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _SetTime_Main                                         1     1      0     574
+                                             11 BANK0      1     1      0
+                    _SetTime_For_Off
+                     _SetTime_For_On
+ ---------------------------------------------------------------------------------
+ (2) _SetTime_For_On                                       1     1      0     287
+                                             10 BANK0      1     1      0
+                      _SetTime_Delay
+ ---------------------------------------------------------------------------------
+ (2) _SetTime_For_Off                                      1     1      0     287
+                                             10 BANK0      1     1      0
+                      _SetTime_Delay
+ ---------------------------------------------------------------------------------
+ (3) _SetTime_Delay                                        6     5      1     287
+                                              4 BANK0      6     5      1
+ ---------------------------------------------------------------------------------
+ (1) _ComControl_Main                                      1     1      0     168
+                                             10 BANK0      1     1      0
+                 _ComControl_OffTime
+                  _ComControl_OnTime
+ ---------------------------------------------------------------------------------
+ (2) _ComControl_OnTime                                    1     1      0       0
+                                              4 BANK0      1     1      0
+ ---------------------------------------------------------------------------------
+ (2) _ComControl_OffTime                                   2     2      0     168
+                                              8 BANK0      2     2      0
+                             ___bmul
+ ---------------------------------------------------------------------------------
+ (3) ___bmul                                               4     3      1     168
+                                              4 BANK0      4     3      1
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (4) _ISR                                                  4     4      0    2564
+                                              0 BANK0      4     4      0
+                    _SysOs_Task_Eval
+                     _SysOs_Task_Exe
+ ---------------------------------------------------------------------------------
+ (5) _SysOs_Task_Exe                                       0     0      0    1508
+                       _xTask_1000ms
+                        _xTask_100ms
+                         _xTask_10ms
+                         _xTask_20ms
+                         _xTask_50ms
+ ---------------------------------------------------------------------------------
+ (6) _xTask_50ms                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ (6) _xTask_20ms                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ (6) _xTask_10ms                                           0     0      0    1508
+                  _Seven_Seg_Display
+ ---------------------------------------------------------------------------------
+ (7) _Seven_Seg_Display                                    3     3      0    1508
+                                              9 COMMON     3     3      0
+                            ___awdiv
+                            ___awmod
+ ---------------------------------------------------------------------------------
+ (8) ___awdiv                                              9     5      4     452
+                                              0 COMMON     9     5      4
+ ---------------------------------------------------------------------------------
+ (6) _xTask_100ms                                          0     0      0       0
+             _SetTime_Button_Handler
+ ---------------------------------------------------------------------------------
+ (7) _SetTime_Button_Handler                               2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ (6) _xTask_1000ms                                         0     0      0       0
+            _ComControl_Monitor_Time
+ ---------------------------------------------------------------------------------
+ (7) _ComControl_Monitor_Time                              1     1      0       0
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ (5) _SysOs_Task_Eval                                      2     2      0    1056
+                                              7 COMMON     2     2      0
+                            ___awmod
+ ---------------------------------------------------------------------------------
+ (8) ___awmod                                              7     3      4    1056
+                                              0 COMMON     7     3      4
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 8
  ---------------------------------------------------------------------------------
 
  Call Graph Graphs:
 
  _main (ROOT)
+   _ComControl_Main
+     _ComControl_OffTime
+       ___bmul
+     _ComControl_OnTime
+   _SetTime_Main
+     _SetTime_For_Off
+       _SetTime_Delay
+     _SetTime_For_On
+       _SetTime_Delay
+   _Seven_Seg_Enable
+   _SysOs_Init
+     _SetTime_Init
+     _Seven_Seg_Disable
+     _Seven_Seg_Init
+     _Timer0_Interrupt_Init
+
+ _ISR (ROOT)
+   _SysOs_Task_Eval
+     ___awmod
+   _SysOs_Task_Exe
+     _xTask_1000ms
+       _ComControl_Monitor_Time
+     _xTask_100ms
+       _SetTime_Button_Handler
+     _xTask_10ms
+       _Seven_Seg_Display
+         ___awdiv
+         ___awmod
+     _xTask_20ms
+     _xTask_50ms
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
-BITCOMMON            E      0       0       0        0.0%
-EEDATA              80      0       0       0        0.0%
-NULL                 0      0       0       0        0.0%
-CODE                 0      0       0       0        0.0%
-COMMON               E      0       0       1        0.0%
-BITSFR0              0      0       0       1        0.0%
-SFR0                 0      0       0       1        0.0%
-BITSFR1              0      0       0       2        0.0%
-SFR1                 0      0       0       2        0.0%
-STACK                0      0       0       2        0.0%
-BANK0               50      0       0       3        0.0%
-BITSFR3              0      0       0       4        0.0%
 SFR3                 0      0       0       4        0.0%
-ABS                  0      0       0       4        0.0%
-BITBANK0            50      0       0       5        0.0%
-BITSFR2              0      0       0       5        0.0%
-SFR2                 0      0       0       5        0.0%
-BITBANK1            50      0       0       6        0.0%
-BANK1               50      0       0       7        0.0%
-BITBANK2            30      0       0       8        0.0%
+BITSFR3              0      0       0       4        0.0%
 BANK2               30      0       0       9        0.0%
-DATA                 0      0       0      10        0.0%
+BITBANK2            30      0       0       8        0.0%
+SFR2                 0      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK1            50      0       0       6        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               50      C      16       3       27.5%
+BITBANK0            50      0       0       5        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               E      C       E       1      100.0%
+BITCOMMON            E      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0      24      10        0.0%
+ABS                  0      0      24       4        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA              80      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.05 build -831301201 
-Symbol Table                                                                                   Thu Jul 11 18:41:55 2019
+Symbol Table                                                                                   Thu Jul 25 18:39:38 2019
 
-             __CFG_CP$ON 0000                        l5 07FD             __CFG_CPD$OFF 0000  
-           __CFG_LVP$OFF 0000                     _main 07FD                     btemp 007E  
-                   start 0000            __CFG_MCLRE$ON 0000                    ?_main 0000  
-          __CFG_WDTE$OFF 0000           __CFG_BOREN$OFF 0000                    status 0003  
-                  wtemp0 007E          __initialization 07FE             __end_of_main 07FE  
-                 ??_main 0000           __CFG_PWRTE$OFF 0000  __end_of__initialization 07FE  
-         __pcstackCOMMON 0000               __pmaintext 07FD     end_of_initialization 07FE  
-    start_initialization 07FE                ___latbits 0000            __size_of_main 0001  
-     __CFG_FOSC$INTOSCIO 0000  
+                         __CFG_CP$ON 0000                                    pc 0002  
+                     ___bmul@product 0026                         ___awdiv@sign 0076  
+                                 fsr 0004                                  l243 0209  
+                                l235 026B                                  l229 02E8  
+                                l239 026E                                  l198 0051  
+                                _GIE 005F                                  _RA0 0028  
+                                _RA1 0029                                  _RA2 002A  
+                                _RA3 002B                                  _RA4 002C  
+                                _RA7 002F                         __CFG_CPD$OFF 0000  
+                                _ISR 02A1                                  u905 0047  
+                                u945 0072                                  fsr0 0004  
+                       ___awmod@sign 0076                         _SysOs_Handle 007C  
+            __size_of_Seven_Seg_Init 0018                         __CFG_LVP$OFF 0000  
+                               ?_ISR 0070                      ?_SetTime_For_On 0070  
+         __size_of_Seven_Seg_Disable 0005                                 l1420 022E  
+                               l1430 023E                                 l1352 0036  
+                               l1432 024C                                 l1442 025F  
+                               l1354 0029                                 l1418 0220  
+                               l1530 02C5                                 l1364 0061  
+                               l1356 0038                                 l1374 02CC  
+                               l1366 0054                                 l1368 0063  
+                               l1378 02D2                                 _T0IE 005D  
+                               _T0IF 005A           __size_of_Seven_Seg_Display 005B  
+                               _INTE 005C                                 i1l32 00BE  
+                               i1l26 00BA                                 i1l27 009F  
+                               i1l65 02A8                                 _TMR0 0001  
+                    _ComControl_Main 030C                                 _main 02B5  
+                               btemp 007E                                 start 0010  
+                  ___bmul@multiplier 0027                        __CFG_MCLRE$ON 0000  
+                       ?_xTask_100ms 0070                                ??_ISR 0020  
+                  ??_SysOs_Task_Eval 0077                     ?_SetTime_For_Off 0070  
+                              ?_main 0070                      __end_of___awdiv 0130  
+                      __CFG_WDTE$OFF 0000                      __end_of___awmod 017B  
+                              _CMCON 001F                      ___awdiv@divisor 0070  
+                              _T1CON 0010                                i1l191 01DC  
+                              i1l192 01DE                                i1l193 01E0  
+                              i1l187 01F9                                i1l189 01DA  
+                    ___awdiv@counter 0075                                _TMR1H 000F  
+                              _TMR1L 000E                                _PORTA 0005  
+                              _PORTB 0006                                u61_25 00F7  
+                              u71_25 014A                                u63_25 0103  
+                              u64_25 010F                                _TRISA 0085  
+                              _TRISB 0086                                u73_25 015B  
+                              u65_25 0119                                u74_25 0164  
+                     __CFG_BOREN$OFF 0000                                pclath 000A  
+           ?_ComControl_Monitor_Time 0070                                status 0003  
+                              wtemp0 007E           __end_of_ComControl_OffTime 0219  
+                    __initialization 0011               SetTime_Delay@Limit_Lwr 0024  
+             SetTime_Delay@Limit_Upr 0027                         __end_of_main 02C8  
+                      ?_xTask_1000ms 0070                               ??_main 002C  
+           __end_of_Seven_Seg_Enable 033D                       _SysOs_Task_Exe 02FC  
+            __end_of_ComControl_Main 0318                     ___awdiv@dividend 0072  
+                             i1l1222 00E1                               u103_20 0184  
+                             i1l1240 0102                               i1l1250 0123  
+                             i1l1324 01CF                               i1l1228 00EC  
+                             i1l1316 00C0                               i1l1270 0141  
+                             i1l1334 01E3                               i1l1254 012B  
+                             i1l1246 0118                               i1l1238 00F4  
+                             i1l1280 0155                               i1l1266 013A  
+                             i1l1292 0176                               i1l1284 0163  
+                             i1l1278 0147                               i1l1462 0185  
+                             i1l1288 016E                               i1l1464 0198  
+                             u105_20 0197                               i1l1480 0302  
+                             i1l1466 01AB                               i1l1554 01EB  
+                             i1l1468 01BE                               i1l1484 0305  
+                             i1l1476 02FF                               i1l1488 0308  
+                             u107_20 01AA                               u109_20 01BD  
+                             _TMR1IF 0060                               _Digits 02F2  
+                     __CFG_PWRTE$OFF 0000              ?_SetTime_Button_Handler 0070  
+            ??_Timer0_Interrupt_Init 0024                       ??_xTask_1000ms 0071  
+                             ___bmul 02C8                            ??___awdiv 0074  
+                          ??___awmod 0074                    _ComControl_OnTime 0255  
+                   ___awdiv@quotient 0077                      ___awmod@divisor 0070  
+                 ?_ComControl_OnTime 0070                      ___awmod@counter 0075  
+             __end_of_SysOs_Task_Exe 030C                         __pdataCOMMON 007D  
+                             saved_w 007E                       _Seven_Seg_Init 0289  
+                ??_ComControl_OnTime 0024      __end_of_ComControl_Monitor_Time 0324  
+            __end_of__initialization 001F       __end_of_SetTime_Button_Handler 01FA  
+                         _SysOs_Init 032F                        ?_SetTime_Main 0070  
+                      ?_SetTime_Init 0070                  ___bmul@multiplicand 0024  
+          __end_of_ComControl_OnTime 0270                       __pcstackCOMMON 0070  
+                       __pidataBANK0 0344                 __size_of_xTask_100ms 0002  
+                    ?_SysOs_Task_Exe 0070               __end_of_Seven_Seg_Init 02A1  
+                   ??_SetTime_For_On 002A                     ?_ComControl_Main 0070  
+                         __pbssBANK0 002C                       ??_SetTime_Main 002B  
+                     ??_SetTime_Init 0024                      _SysOs_Task_Eval 017B  
+                         __pmaintext 02B5                              ?___bmul 0024  
+                         __pintentry 0004               __size_of_SetTime_Delay 005B  
+                    ?_Seven_Seg_Init 0070                 __end_of_xTask_1000ms 0343  
+                         __stringtab 02EC                          ?_SysOs_Init 0070  
+         __size_of_ComControl_OnTime 001B                           _xTask_10ms 033D  
+                         _xTask_20ms 0346                           _xTask_50ms 0345  
+                    __size_of___bmul 0013                              ___awdiv 00D7  
+                            ___awmod 0130     __size_of_ComControl_Monitor_Time 000C  
+   SetTime_Button_Handler@KeyPressed 0030                   _ComControl_OffTime 01FA  
+                            __ptext1 032F                              __ptext2 0324  
+                            __ptext3 0289                              __ptext4 0334  
+                            __ptext5 0270                              __ptext6 0339  
+                            __ptext7 02DB                              __ptext8 0219  
+                            __ptext9 0237                         __size_of_ISR 0014  
+SetTime_Button_Handler@KeyPressCount 0031                     ___awmod@dividend 0072  
+                  ?_Seven_Seg_Enable 0070                  ?_ComControl_OffTime 0070  
+                       _Global_Delay 002C             __size_of_SetTime_For_Off 001E  
+                 ??_Seven_Seg_Enable 0024              __end_of_SysOs_Task_Eval 01C5  
+               end_of_initialization 001F                        _SetTime_Delay 0021  
+               ??_ComControl_OffTime 0028       __size_of_Timer0_Interrupt_Init 000B  
+      __end_of_Timer0_Interrupt_Init 032F                 __end_of_SetTime_Main 02EC  
+               __end_of_SetTime_Init 0289                  __size_of_SysOs_Init 0005  
+                     ?_SetTime_Delay 0024                       __end_of_Digits 02FC  
+        Seven_Seg_Display@Toggle_Seg 0035                          ?_xTask_10ms 0070  
+                        ?_xTask_20ms 0070                          ?_xTask_50ms 0070  
+                   ??_SysOs_Task_Exe 007C                       __end_of___bmul 02DB  
+                      __pidataCOMMON 0343                __size_of_xTask_1000ms 0002  
+                start_initialization 0011                          __end_of_ISR 02B5  
+                   ?_SysOs_Task_Eval 0070                    ??_SetTime_For_Off 002A  
+                      ??_xTask_100ms 0072                   _SysOs_Tick_Counter 007D  
+                           ??___bmul 0025              _ComControl_Monitor_Time 0318  
+                       _xTask_1000ms 0341                     ??_Seven_Seg_Init 0024  
+                        __pdataBANK0 0035                          __pbssCOMMON 007C  
+                          ___latbits 0000                        __pcstackBANK0 0020  
+                __size_of_xTask_10ms 0002                  __size_of_xTask_20ms 0001  
+                __size_of_xTask_50ms 0001                      ??_SetTime_Delay 0025  
+           __size_of_ComControl_Main 000C                         ??_SysOs_Init 0025  
+                           ?___awdiv 0070                             ?___awmod 0070  
+              __size_of_SetTime_Main 0011                __size_of_SetTime_Init 0019  
+                          __pstrings 02EC                  __end_of_xTask_100ms 0341  
+                 __end_of_SysOs_Init 0334             ??_SetTime_Button_Handler 0070  
+                  interrupt_function 0004              __size_of_SetTime_For_On 001E  
+          __size_of_Seven_Seg_Enable 0004            ??_ComControl_Monitor_Time 0070  
+                       _SetTime_Main 02DB                         _SetTime_Init 0270  
+                        __stringbase 02F1                   _System_Time_Shadow 0032  
+                    _Segment_Handler 002E          __size_of_ComControl_OffTime 001F  
+                       ??_xTask_10ms 007C                         ??_xTask_20ms 0070  
+                       ??_xTask_50ms 0070                          _xTask_100ms 033F  
+                  ??_ComControl_Main 002A                     __size_of___awdiv 0059  
+                   __size_of___awmod 004B                _Timer0_Interrupt_Init 0324  
+                 __end_of__stringtab 02F2                      _SetTime_For_Off 0237  
+                           __ptext10 0021                             __ptext11 030C  
+                           __ptext20 007C                             __ptext12 0255  
+                           __ptext21 00D7                             __ptext13 01FA  
+                           __ptext22 033F                             __ptext14 02C8  
+                           __ptext23 01C5                             __ptext15 02A1  
+                           __ptext24 0341                             __ptext16 02FC  
+                           __ptext25 0318                             __ptext17 0345  
+                           __ptext26 017B                             __ptext18 0346  
+                           __ptext27 0130                             __ptext19 033D  
+    __size_of_SetTime_Button_Handler 0035                   __end_of_xTask_10ms 033F  
+                 __end_of_xTask_20ms 0347                   __end_of_xTask_50ms 0346  
+                  _Seven_Seg_Disable 0334                    _Seven_Seg_Display 007C  
+                      __size_of_main 0013                   ?_Seven_Seg_Disable 0070  
+                 ?_Seven_Seg_Display 0070                  ??_Seven_Seg_Disable 0024  
+                ??_Seven_Seg_Display 0079                       _SetTimeHandler 0033  
+          __end_of_Seven_Seg_Disable 0339            __end_of_Seven_Seg_Display 00D7  
+                           intlevel1 0000                    SetTime_Delay@temp 0028  
+                     _SetTime_For_On 0219                     _Seven_Seg_Enable 0339  
+                          stringcode 02EC             __size_of_SysOs_Task_Eval 004A  
+             _SetTime_Button_Handler 01C5               ?_Timer0_Interrupt_Init 0070  
+            __end_of_SetTime_For_Off 0255                           _OPTION_REG 0081  
+                           stringdir 02EC                             stringtab 02EC  
+            __size_of_SysOs_Task_Exe 0010               __end_of_SetTime_For_On 0237  
+                 __CFG_FOSC$INTOSCIO 0000                __end_of_SetTime_Delay 007C  

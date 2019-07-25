@@ -9,7 +9,10 @@
 #define True     On
 #define False    Off
 
-#define Enable    On
-#define Disable   Off
+#define Enable   On
+#define Disable  Off
+
+#define Set      On
+#define Reset    Off
 
 #endif //__PLATFORM_H__

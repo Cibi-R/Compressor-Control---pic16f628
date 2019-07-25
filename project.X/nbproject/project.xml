@@ -14,6 +14,11 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>../src</sourceRootElem>
+                <sourceRootElem>../core/base/seven_seg/src</sourceRootElem>
+                <sourceRootElem>../core/pic628a/timer/src</sourceRootElem>
+                <sourceRootElem>../core/sys_os/src</sourceRootElem>
+                <sourceRootElem>../core/sysos/src</sourceRootElem>
+                <sourceRootElem>../core/base/com_control/src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

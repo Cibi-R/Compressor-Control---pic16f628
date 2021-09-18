@@ -1,5 +1,4 @@
 #include <include.h>
-#include TIMER_H
 
 /*
  *  Delay Time : 1 Sec 
@@ -49,7 +48,7 @@ void Timer0_Interrupt_Init(void)
     T0IE= 1;
 
 	/*Prescalar value : 64 */
-    OPTION_REG = 0b10000101;
+    OPTION = 0b10000101;
 
 	/*set timer starting value as 100 so that we can rise timer interrupt flag for every 10ms */
     TMR0 = 100;

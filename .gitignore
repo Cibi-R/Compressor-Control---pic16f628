@@ -1,4 +1,8 @@
+# remove vscode files
+.vscode
 
+#remove mplab files
+out/*
 
-/project.X/build/*
-/project.X/dist/*
+#remove proteus files
+simulation/.workspace

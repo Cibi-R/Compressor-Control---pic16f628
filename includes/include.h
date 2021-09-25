@@ -3,5 +3,6 @@
 
 #include <pic.h>
 #include <pic676.h>
+#include <app.h>
 
 #endif //__INCLUDE_H__

@@ -18,29 +18,59 @@ filter_obj=*.obj;*.p1;*.hex
 filter_lib=*.lib;*.lpp
 filter_lkr=*.unknown
 [CAT_SUBFOLDERS]
-subfolder_src=pic676;project
-subfolder_inc=
+subfolder_src=app;pic676;project
+subfolder_inc=app;pic676
 subfolder_obj=
 subfolder_lib=
 subfolder_lkr=
 [FILE_SUBFOLDERS]
 file_000=project
 file_001=pic676
+file_002=app
+file_003=.
+file_004=.
+file_005=pic676
+file_006=.
+file_007=app
 [GENERATED_FILES]
 file_000=no
 file_001=no
+file_002=no
+file_003=no
+file_004=no
+file_005=no
+file_006=no
+file_007=no
 [OTHER_FILES]
 file_000=no
 file_001=no
+file_002=no
+file_003=no
+file_004=no
+file_005=no
+file_006=no
+file_007=no
 [FILE_INFO]
 file_000=src.c
 file_001=D:\CB Learning\Platforms\PIC\PIC16F676\Compressor_Control_pic16f628\core\pic676\timer\src\timer.c
+file_002=D:\CB Learning\Platforms\PIC\PIC16F676\Compressor_Control_pic16f628\core\app\src\com_control.c
+file_003=D:\CB Learning\Platforms\PIC\PIC16F676\Compressor_Control_pic16f628\includes\pic676.h
+file_004=D:\CB Learning\Platforms\PIC\PIC16F676\Compressor_Control_pic16f628\includes\prj_config.h
+file_005=D:\CB Learning\Platforms\PIC\PIC16F676\Compressor_Control_pic16f628\core\pic676\timer\api\timer.h
+file_006=D:\CB Learning\Platforms\PIC\PIC16F676\Compressor_Control_pic16f628\includes\include.h
+file_007=D:\CB Learning\Platforms\PIC\PIC16F676\Compressor_Control_pic16f628\core\app\api\com_control.h
 [SUITE_INFO]
 suite_guid={507D93FD-16F1-4270-980F-0C7C0207E6D3}
 suite_state=
 [TOOL_SETTINGS]
-TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}= C9=1
-TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}_alt=yes
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}=C9=1
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}000=
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}000_alt=yes
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}001=
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}001_alt=yes
+[ACTIVE_FILE_SETTINGS]
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}000_active=yes
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}001_active=yes
 [INSTRUMENTED_TRACE]
 enable=0
 transport=0

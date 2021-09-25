@@ -1,61 +1,37 @@
 #include <include.h>
 
-/*
- *  Delay Time : 1 Sec 
- *  Prescalar Value : 8
- *  Timer1 counter Reg Value : (65535 - 62500) = 3036
- *  Calculated count Value : 2 
- */
+/******************************************************************************************************************************************
+ *                                                    Timer calculation
+ ******************************************************************************************************************************************
+ *
+ *  1. periodicity = 10ms
+ *  2. input clock frequence = 4Mhz
+ *  3. input to timer1 (all peripheral in the pic16) = 4Mhz / 4 (instruction cycle)
+ *  
+ *  frequency = 1 / time = 1 / 10ms = 100
+ *
+ *  
+ *
+ *	frequency = 4Mhz / (4(to converto to instruction cyle) * 4 (prescalar value) * (16bit reg) * count)
+ *
+ ******************************************************************************************************************************************/
 
-void Timer1_Delay_Sec(unsigned char Delay)
+
+void Timer1_Int_Init(void)
 {
-	unsigned char FlagCounter=0;
+    /*< global interrupt enable */
+    GIE   = 1;
 
-    /*Combine count value with delay value */
-	Delay *= 2;
+    /*< peripheral interrupt enable */
+    PEIE  = 1;
 
-	/*Timer_1 16 Bit Register value 3036, shared between two 8 bit register. */
-	TMR1L = 0XDC; TMR1H = 0X0B;
-	
-	/*Prescalar - 8, Timer1 Module - On(1) */
-	T1CON = 0b00110001;
-	
-	while(1)  
-	{
-		while(!TMR1IF);
+    /*< timer1 interrupt enable */
+	TMR1IE= 1;
 
-		TMR1IF = 0;
+	/*< timer 1 register value - 63035 */
+	TMR1L = 0X3B;
+	TMR1H = 0XF6;
 
-		TMR1L = 0XDC;
-
-		TMR1H = 0X0B;
-
-		FlagCounter++;
-
-		if(FlagCounter == Delay)
-		{
-			break;
-		}
-	}
-}
-
-void Timer0_Interrupt_Init(void)
-{
-	/*Enable global interrupt */
-	GIE = 1;
-
-	/*Enable timer interrupt */
-    T0IE= 1;
-
-	/*Prescalar value : 64 */
-    OPTION = 0b10000101;
-
-	/*set timer starting value as 100 so that we can rise timer interrupt flag for every 10ms */
-    TMR0 = 100;
-}
-
-void Ext_Int_Enable(void)
-{
-	GIE = 1;
-	INTE= 1;
+    /*< Enable Timer1, configure prescal value as 4 */
+	T1CON = 0X21;         
 }

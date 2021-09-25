@@ -6,25 +6,6 @@
  *												      Function Declarations
  ******************************************************************************************************************************/
 
-/*
- * @brief  : 
- * @para   :
- * @return :
- */
-extern void Timer1_Delay_Sec(unsigned char Delay);
-
-/*
- * @brief  : 
- * @para   :
- * @return :
- */
-extern void Timer0_Interrupt_Init(void);
-
-/*
- * @brief  : 
- * @para   :
- * @return :
- */
-extern void Ext_Int_Enable(void);
+extern void Timer1_Int_Init(void);
 
 #endif //__TIMER_H__
